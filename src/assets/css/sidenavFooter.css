@@ -1,42 +1,30 @@
-.styled_button {
-    padding: 5px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    background-color: #fff;
-    color: #484848;
-    text-decoration: none;
-}
-
-.styled_sidebar_footer {
-    width: 50%;
+.sidenav-container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 8px;
-    color: white;
-    background: linear-gradient(45deg, rgb(21 87 205) 0%, rgb(90 225 255) 100%);
-    /* background: #0098e5; */
+    background-image: url("/src/assets/images/sidenav-card-background.png");
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 1rem;
 }
-
-.styled_collapsed_sidebar_footer {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
+.star-container{
+    background-color: white;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin: 1rem;
+    border-radius: 5px;
+    display: grid;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    color: white;
-    background: linear-gradient(45deg, rgb(21 87 205) 0%, rgb(90 225 255) 100%);
-    /* background: #0098e5; */
+    text-align: center;
 }
-
-.caption {
-    font-size: 10px;
-    line-height: 16px;
+.star-logo{
+    margin-left: 0.225rem;
+}
+.card-container{
+    margin: 1rem;
+}
+.button-container{
+    margin: 1rem;
+    width: 120%;
+    display: inline-flex;
+    align-items: center;
 }

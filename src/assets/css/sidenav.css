@@ -1,4 +1,83 @@
-.body2{
+.body2 {
     font-size: 12px;
     line-height: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+.sidebar {
+    color: white;
+    margin: 1rem;
+    background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%);
+    border-radius: 1.25rem;
+    width: 15.625rem;
+    height: calc(100vh - 2rem);
+    overflow: hidden;
+    border: none;
+    inset: 0;
+    backdrop-filter: blur(120px);
+}
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    inset: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.sidebar-container::-webkit-scrollbar {
+    display: none;
+}
+.ps-menu-button{
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+}
+.ps-menu-button::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 33px;
+    width: 0;
+    height: 1px;
+    background-color: #0075ff;
+    transition: width 0.5s ease-in;
+}
+.ps-menu-button:hover::after {
+    width: 100%;
+}
+.sidebar-label-divider{
+    padding: 0 24px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    margin-left: 10px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.ps-menu-button.ps-active {
+    background: rgb(26, 31, 55);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0 1rem;
+    border-radius: 0.9375rem;
+}
+.ps-menu-icon.ps-active{
+    margin-left: -0.2rem;
+    background-color: rgb(0, 117, 255);
+    color: white;
+    z-index: 10;
+    box-shadow: none;
+}
+
+.ps-menu-button.ps-active::after{
+    left: 1rem;
+}
+.sidebar.ps-broken{
+    margin: 0;
 }

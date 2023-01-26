@@ -1,14 +1,17 @@
 import React from 'react';
-import {Sidebar, Menu, MenuItem, SubMenu, useProSidebar, menuClasses} from "react-pro-sidebar";
-import { Diamond } from 'assets/svg/Diamond';
+import { Link } from 'react-router-dom';
+import { Sidebar, Menu, MenuItem, useProSidebar, menuClasses } from "react-pro-sidebar";
 import { BarChart } from 'assets/svg/BarChart';
-import { Global } from 'assets/svg/Global';
-import { InkBottle } from 'assets/svg/InkBottle';
+import { Stake } from "assets/svg/Stake";
+import { Cubes } from "assets/svg/Cubes";
 import { ShoppingCart } from 'assets/svg/ShoppingCart';
-import { Service } from 'assets/svg/Service';
+import { Users } from 'assets/svg/Users';
+import { MicroBlog } from 'assets/svg/MicroBlog';
+import { FilePen } from "assets/svg/FilePen";
 import { SidenavHeader } from 'sidenav/components/sidenavHeader';
 import { SidenavFooter } from 'sidenav/components/sidenavFooter';
 import 'assets/css/sidenav.css';
+import Dashboard from "pages/dashboard";
 
 
 const sidenavColor = {
@@ -20,12 +23,12 @@ const sidenavColor = {
         menuContent: '#082440',
         icon: '#59d0ff',
         hover: {
-            backgroundColor: '#0e3052',
-            color: '#b6c8d9',
+            backgroundColor: 'inherit',
+            color: '#0075ff'
         },
         active: {
-            backgroundColor: '#13395e',
-            color: '#b6c8d9',
+            backgroundColor: '#0C2959',
+            color: 'white',
         },
         disabled: {
             color: '#3e5e7e',
@@ -38,113 +41,103 @@ export function Sidenav() {
 
     const menuItemStyles = {
         root: {
-            fontSize: '14px',
+            fontSize: '0.875rem',
             fontWeight: 400,
+            fontFamily: '"Plus Jakarta Display", Helvetica, Arial, sans-serif'
         },
         icon: {
-            color: sidenavColor.menu.icon,
-        },
-        SubMenuExpandIcon: {
-            color: '#b6b7b9',
-        },
-        subMenuContent: {
-            backgroundColor: sidenavColor.menu.menuContent,
+            color: '#0075ff',
+            boxShadow: '2px 2px 60px 0px #1a1f37 inset',
+            borderRadius: '10px',
+            marginLeft: '0.8rem',
         },
         button: {
-            [`&.${menuClasses.active}`]: {
-                backgroundColor: sidenavColor.menu.active.backgroundColor,
-                color: sidenavColor.menu.active.color,
-            },
             [`&.${menuClasses.disabled}`]: {
                 color: sidenavColor.menu.disabled.color,
             },
             '&:hover': {
                 backgroundColor: sidenavColor.menu.hover.backgroundColor,
-                color: sidenavColor.menu.hover.color,
+                color: sidenavColor.menu.hover.color
             },
-        },
-        label: ({ open }) => ({
-            fontWeight: open ? 600 : undefined,
-        }),
+        }
     };
 
     return (
         <Sidebar
             breakPoint="lg"
             backgroundColor={'transparent'}
+            className="sidebar"
             rootStyles={{
-                color: 'white',
-                margin: '1rem',
-                background: 'linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%)',
-                borderRight: '0',
-                borderRadius: '1.25rem',
-                width: '15.625rem',
-                height: 'calc(100vh - 2rem)',
-                overflow: 'hidden',
-                inset: '0px',
-                backdropFilter: 'blur(120px)'
+                border: 'none'
             }}
         >
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'absolute',
-                inset: '0px',
-                overflowX: 'hidden ',
-                overflowY: 'scroll '
-            }}>
-                <SidenavHeader style={{marginBottom: '24px' }} />
-                <div style={{ flex: 1, marginBottom: '32px' }}>
-                    <div style={{ padding: '0 24px', marginBottom: '8px' }}>
-                        <p
-                            className="body2"
-                            style={{fontWeight: 600, opacity: collapsed ? 0 : 0.7, letterSpacing: '0.5px' }}
-                        >
-                            General
-                        </p>
+            <div className='sidebar-container'>
+                <SidenavHeader/>
+                <div style={{ flex: 1}}>
+                    <div className='sidebar-label-divider'>
+                        <p> General </p>
                     </div>
                     <Menu menuItemStyles={menuItemStyles}>
                         <MenuItem
                             label="Dashboard"
                             icon={<BarChart />}
+                            component={<Link to="/dashboard"/>}
+                            active={window.location.pathname === "/dashboard" || window.location.pathname === "/"}
                         >
                             Dashboard
                         </MenuItem>
                         <MenuItem
                             label="Staking"
-                            icon={<Diamond />}
+                            icon={<Stake />}
+                            component={<Link to="/staking"/>}
+                            active={window.location.pathname === "/staking"}
                         >
                             Staking
                         </MenuItem>
                         <MenuItem
                             label="Projects"
-                            icon={<Global />}
+                            icon={<Cubes />}
+                            component={<Link to="/projects"/>}
+                            active={window.location.pathname === "/projects"}
                         >
                             Projects
                         </MenuItem>
+                        {/*<MenuItem*/}
+                        {/*    label="Presale"*/}
+                        {/*    icon={<ShoppingCart />}*/}
+                        {/*>*/}
+                        {/*    Presale*/}
+                        {/*</MenuItem>*/}
                         <MenuItem
-                            label="Presale"
-                            icon={<ShoppingCart />}
+                            icon={<FilePen />}
+                            component={<a href="https://docs.google.com/forms/d/e/1FAIpQLSf69Ulfxxb6TErJJFpGIqtG0TG-ZM1o_CC0b4AR9GjyYA7T2Q/viewform" target="_blank"/>}
                         >
-                            Presale
+                            Apply to us
                         </MenuItem>
                     </Menu>
 
-                    <div style={{ padding: '0 24px', marginBottom: '8px', marginTop: '32px' }}>
-                        <p
-                            className="body2"
-                            style={{fontWeight: 600, opacity: collapsed ? 0 : 0.7, letterSpacing: '0.5px' }}
-                        >
-                            Extra
-                        </p>
+                    <div className='sidebar-label-divider'>
+                        <p style={{marginTop: '30px'}}> Extra </p>
                     </div>
 
                     <Menu menuItemStyles={menuItemStyles}>
-                        <MenuItem icon={<InkBottle />}>Blog</MenuItem>
-                        <MenuItem icon={<Service />}> Team</MenuItem>
+                        <MenuItem
+                            icon={<MicroBlog />}
+                            component={<a href="https://medium.com/@xlauncher" target="_blank"/>}
+                        >
+                            Blog
+                        </MenuItem>
+                        <MenuItem
+                            label="Team"
+                            icon={<Users />}
+                            component={<Link to="/team"/>}
+                            active={window.location.pathname === "/team"}
+                        >
+                            Team
+                        </MenuItem>
                     </Menu>
                 </div>
-                <SidenavFooter collapsed={collapsed}/>
+                <SidenavFooter/>
             </div>
         </Sidebar>
   )

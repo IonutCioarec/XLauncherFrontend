@@ -1,10 +1,33 @@
-.styled_sidebar_header {
+.styled-sidebar-header {
     display: flex;
-    align-items: center;
-    padding: 0 30px;
+    justify-content: space-evenly;
 }
 
-.styled_sidebar_header > div {
-    width: 100%;
+.styled-sidebar-header-div {
     overflow: hidden;
+    display: flex;
+    text-align: center;
+    padding: 24px 32px 0;
+    margin-bottom: -15px;
+}
+
+.logo-text {
+    font-family: "Plus Jakarta Display", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    opacity: 1;
+    max-width: 100%;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+.logo{
+    width: 30px;
+    height: 24px;
 }
