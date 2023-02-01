@@ -1,4 +1,3 @@
-import {Book} from 'assets/svg/Book';
 import {Star} from "assets/svg/Star";
 import 'assets/css/sidenavFooter.css';
 import 'assets/css/globals.css';
@@ -19,7 +18,7 @@ export const SidenavFooter = () => {
                     <p style={{fontSize: '13px' , marginTop: '-7px'}}>Check our whitelist</p>
                 </div>
                 <div className='d-grid gap-2 button-container' >
-                    <a href={codeUrl} target='_blank' className='btn btn-gradient-dark btn-sm'>
+                    <a href={codeUrl} target='_blank' rel="noreferrer" className='btn btn-gradient-dark btn-sm'>
                         View file
                     </a>
                 </div>

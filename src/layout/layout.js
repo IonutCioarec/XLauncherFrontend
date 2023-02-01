@@ -1,5 +1,4 @@
 import React from 'react';
-import { Menu, MenuItem, SubMenu, useProSidebar, menuClasses} from "react-pro-sidebar";
 import {Sidenav} from "sidenav/sidenav";
 import {Navbar} from "navbar/navbar";
 import 'assets/css/globals.css';
@@ -8,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Layout(props) {
-    const { toggleSidebar, collapseSidebar, broken, collapsed } = useProSidebar();
 
     return (
         <div className='page-container'>

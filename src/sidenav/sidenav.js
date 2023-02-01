@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, MenuItem, useProSidebar, menuClasses } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, menuClasses } from "react-pro-sidebar";
 import { BarChart } from 'assets/svg/BarChart';
 import { Stake } from "assets/svg/Stake";
 import { Cubes } from "assets/svg/Cubes";
-import { ShoppingCart } from 'assets/svg/ShoppingCart';
+// import { ShoppingCart } from 'assets/svg/ShoppingCart';
 import { Users } from 'assets/svg/Users';
 import { MicroBlog } from 'assets/svg/MicroBlog';
 import { FilePen } from "assets/svg/FilePen";
 import { SidenavHeader } from 'sidenav/components/sidenavHeader';
 import { SidenavFooter } from 'sidenav/components/sidenavFooter';
 import 'assets/css/sidenav.css';
-import Dashboard from "pages/dashboard";
 
 
 const sidenavColor = {
@@ -37,8 +36,6 @@ const sidenavColor = {
 }
 
 export function Sidenav() {
-    const { toggleSidebar, collapseSidebar, broken, collapsed } = useProSidebar();
-
     const menuItemStyles = {
         root: {
             fontSize: '0.875rem',
@@ -110,7 +107,7 @@ export function Sidenav() {
                         {/*</MenuItem>*/}
                         <MenuItem
                             icon={<FilePen />}
-                            component={<a href="https://docs.google.com/forms/d/e/1FAIpQLSf69Ulfxxb6TErJJFpGIqtG0TG-ZM1o_CC0b4AR9GjyYA7T2Q/viewform" target="_blank"/>}
+                            component={<a href="https://docs.google.com/forms/d/e/1FAIpQLSf69Ulfxxb6TErJJFpGIqtG0TG-ZM1o_CC0b4AR9GjyYA7T2Q/viewform" target="_blank" rel="noreferrer"> </a>}
                         >
                             Apply to us
                         </MenuItem>
@@ -123,7 +120,7 @@ export function Sidenav() {
                     <Menu menuItemStyles={menuItemStyles}>
                         <MenuItem
                             icon={<MicroBlog />}
-                            component={<a href="https://medium.com/@xlauncher" target="_blank"/>}
+                            component={<a href="https://medium.com/@xlauncher" target="_blank" rel="noreferrer"> </a>}
                         >
                             Blog
                         </MenuItem>

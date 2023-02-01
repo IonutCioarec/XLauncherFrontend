@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faCheckSquare, faCoffee, faRightToBracket, faWallet, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faCoffee, faRightToBracket, faWallet, faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "pages/dashboard";
@@ -10,7 +10,7 @@ import Team from "pages/team";
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import {environment} from "utils/variables";
 
-library.add(fab, faCheckSquare, faCoffee, faRightToBracket, faWallet, faBars);
+library.add(fab, faCheckSquare, faCoffee, faRightToBracket, faWallet, faBars, faCircleXmark);
 
 function App() {
   return (
