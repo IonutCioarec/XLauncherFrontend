@@ -487,3 +487,33 @@ h6 {
     margin-top: 10px;
     align-content: center;
 }
+
+/* Dapp login buttons */
+.dapp-primary{
+    background-color: #4318ff !important;
+    border-color: #4318ff !important;
+    color: white !important;
+    transition: all 150ms ease-in 0s !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+.dapp-primary:hover,
+.dapp-primary:active{
+    border: 1px solid white !important;
+    color: white !important;
+    transform: scale(1.03) !important;
+}
+.dapp-core-component__extensionLoginButton-styles__no-extension-button-title {
+    color: white !important;
+    display: inline !important;
+    margin-right: 10px ;
+}
+.dapp-core-component__extensionLoginButton-styles__noExtensionButtonContent{
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+/* Widths */
+.w-60{
+    width: 60%;
+}
