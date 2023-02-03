@@ -42,7 +42,7 @@ export function Navbar() {
                             <Col className="text-center">
                                 <WebWalletLoginButton
                                     callbackRoute="/"
-                                    loginButtonText={"Web wallet"}
+                                    loginButtonText="Web wallet"
                                     className="btn btn-sm dapp-primary font-size-sm w-60"
                                 />
                             </Col>
@@ -50,7 +50,7 @@ export function Navbar() {
                         <Row>
                             <Col>
                                 <LedgerLoginButton
-                                    loginButtonText={"Ledger"}
+                                    loginButtonText="Ledger"
                                     callbackRoute="/"
                                     className="btn btn-sm dapp-primary font-size-sm w-60"
                                 />
@@ -60,7 +60,7 @@ export function Navbar() {
                             <Col>
                                 <WalletConnectLoginButton
                                     callbackRoute="/"
-                                    loginButtonText={"Maiar"}
+                                    loginButtonText="Maiar"
                                     className="btn btn-sm dapp-primary font-size-sm w-60"
                                 />
                             </Col>
@@ -69,7 +69,7 @@ export function Navbar() {
                             <Col>
                                 <ExtensionLoginButton
                                     callbackRoute="/"
-                                    loginButtonText={"Extension"}
+                                    loginButtonText="Extension"
                                     className="btn btn-block btn-sm dapp-primary font-size-sm w-60 mt-1"
                                 />
                             </Col>

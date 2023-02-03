@@ -19,6 +19,7 @@ import Projects from "pages/projects";
 import Team from "pages/team";
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import {environment} from "utils/variables";
+import {NotificationModal, SignTransactionsModals, TransactionsToastList} from "@multiversx/sdk-dapp/UI";
 
 library.add(
     fab,
@@ -40,6 +41,9 @@ function App() {
           customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
           completedTransactionsDelay={200}
       >
+          <TransactionsToastList />
+          <NotificationModal />
+          <SignTransactionsModals />
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<Dashboard />}/>
