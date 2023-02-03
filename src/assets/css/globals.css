@@ -512,6 +512,41 @@ h6 {
     padding-top: 1px !important;
     padding-bottom: 1px !important;
 }
+.dapp-core-component__dappModalStyles__dappModalHeader{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+.dapp-core-component__dappModalStyles__dappModalContent{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    border-color: #4318ff !important;
+}
+.dapp-core-component__main__card{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    border-top: 1px solid #4318ff !important;
+    border-bottom: 1px solid #4318ff !important;
+    border-radius: 0 !important;
+}
+.dapp-core-component__main__btn-primary {
+    background-color: #4318ff !important;
+    border-color: #4318ff !important;
+    border-radius: 0.75rem !important;
+    transition: all 150ms ease-in 0s !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+.dapp-core-component__main__btn-primary:hover,
+.dapp-core-component__main__btn-primary:active{
+    border: 1px solid white !important;
+    color: white !important;
+    transform: scale(1.03) !important;
+}
+.dapp-core-component__dappModalStyles__dappModalCloseButton{
+    padding: 0.25rem 0.5rem !important;
+}
 
 /* Widths */
 .w-60{

@@ -87,7 +87,7 @@ export function Navbar() {
         return (
             broken? (
                 <React.Fragment>
-                    <Row>p
+                    <Row>
                         <Col xs={6}>
                             <Button
                                 variant="outline-light"
