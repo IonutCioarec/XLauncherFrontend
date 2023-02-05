@@ -10,9 +10,20 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCopy} from '@fortawesome/free-regular-svg-icons';
+import {faPowerOff} from "@fortawesome/free-solid-svg-icons";
 import {Account} from "utils/multiversX";
 import Modal from 'react-bootstrap/Modal';
 import "assets/css/navbar.css";
+import RustLogo from "assets/images/rockets/rust.png";
+import BronzeLogo from "assets/images/rockets/bronze.png";
+import SilverLogo from "assets/images/rockets/silver.png";
+import GoldLogo from "assets/images/rockets/gold.png";
+import PlatinumLogo from "assets/images/rockets/platinum.png";
+import LegendaryLogo from "assets/images/rockets/legendary.png";
+import XLHLogo from "assets/images/logo.svg";
+import EGLDLogo from "assets/images/egld-logo.svg";
+import Image from "react-bootstrap/Image";
+import {egldMultiplier, calc2} from "utils/utilities";
 
 export function Navbar() {
     //Used to detect mobile screen
@@ -111,12 +122,13 @@ export function Navbar() {
             show={show}
             onHide={handleClose}
             centered
+            size="sm"
         >
             <Modal.Body>
                 <Container className="modal-container">
                     <Row>
                         <Col xs={6}>
-                            <p className="h5"> Account Details</p>
+                            <p className="h5" style={{marginLeft: '12px'}}> Account Details</p>
                         </Col>
                         <Col xs={6}>
                             <Button
@@ -124,7 +136,7 @@ export function Navbar() {
                                 variant="danger"
                                 className="float-end b-r-sm"
                                 onClick={handleClose}
-                                style={{marginTop: '-20px', marginRight: '-15px'}}
+                                style={{marginTop: '-10px', marginRight: '12px'}}
                             >
                                 <FontAwesomeIcon icon="fa-xmark" size="sm" />
                             </Button>
@@ -132,14 +144,14 @@ export function Navbar() {
                     </Row>
                     <Container>
                     <Row>
-                        <Col xs={12}>
+                        <Col xs={12} className="text-center">
                             <p className="h6 font-medium text-primary text-center mt-2">
                                 Address:
                             </p>
                             <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
                             <Row>
                                 <Col xs={10}>
-                                    <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
+                                    <p className="font-size-sm font-lighter">{address.slice(0,17)} ... {address.slice(50,62)}</p>
                                 </Col>
                                 <Col xs={2}>
                                     {!isCopied ? (
@@ -173,44 +185,112 @@ export function Navbar() {
                                 <Row>
                                     <Col xs={12} className="overflow-item" style={{height: '100%'}}>
                                         <Row>
-                                            <Col xs={6}>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
+                                            <Col lg={{offset: 1, span: 5}}>
+                                                <Image
+                                                    width={18}
+                                                    height={18}
+                                                    alt="18x18"
+                                                    src={XLHLogo}
+                                                    style={{marginTop: '-3px', marginRight: '5px'}}
+                                                />
+                                                <p className="font-size-sm d-inline">XLH: 22</p>
                                             </Col>
-                                            <Col xs={6} >
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
+                                            <Col lg={{offset: 1, span: 5}}>
+                                                <Image
+                                                    width={16}
+                                                    height={16}
+                                                    alt="16x16"
+                                                    src={EGLDLogo}
+                                                    style={{marginTop: '-3px', marginRight: '5px'}}
+                                                    className="inverted-icon"
+                                                />
+                                                <p className="font-size-sm d-inline">EGLD: {calc2(account.balance / egldMultiplier)} </p>
                                             </Col>
                                         </Row>
                                     </Col>
                                 </Row>
 
-                                <p className="h6 font-medium text-primary text-center mt-4">
-                                    NFTS:
-                                </p>
-                                <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
+
                                 <Row>
-                                    <Col xs={12} className="overflow-item" style={{height: '100%'}}>
+                                    <Col xs={12} className="text-center">
+                                        <p className="h6 text-primary text-center mt-4">
+                                            XLH Origins NFTS ():
+                                        </p>
+                                        <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
                                         <Row>
-                                            <Col xs={6}>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={RustLogo}
+                                                />
+                                                <p className="font-size-sm">Rust: 2</p>
                                             </Col>
-                                            <Col xs={6} >
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
-                                                <p className="font-size-xs font-lighter">{address.slice(0,20)} ... {address.slice(50,62)}</p>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={BronzeLogo}
+                                                />
+                                                <p className="font-size-sm">Bronze: 2</p>
+                                            </Col>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={SilverLogo}
+                                                />
+                                                <p className="font-size-sm">Silver: 2</p>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={GoldLogo}
+                                                />
+                                                <p className="font-size-sm ">Gold: 2</p>
+                                            </Col>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={PlatinumLogo}
+                                                />
+                                                <p className="font-size-sm">Platinum: 2</p>
+                                            </Col>
+                                            <Col xs={4}>
+                                                <Image
+                                                    width={25}
+                                                    height={26}
+                                                    alt="25x26"
+                                                    src={LegendaryLogo}
+                                                />
+                                                <p className="font-size-sm">Legendary: 2</p>
                                             </Col>
                                         </Row>
                                     </Col>
                                 </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col cs={12} className="mt-3 text-center">
+                                <Button
+                                    variant="primary"
+                                    className="text-white btn-block"
+                                    onClick={() => logout(`${window.location.origin}/`)}
+                                >
+                                    <FontAwesomeIcon icon={faPowerOff} style={{marginRight: '5px'}}/>
+                                    Logout
+                                </Button>
                             </Col>
                         </Row>
                     </Container>

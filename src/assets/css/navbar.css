@@ -60,7 +60,7 @@
 .modal-content{
     background-color: rgba(6, 11, 40, 1) !important;
     color: white !important;
-    /*border: 1px solid #4318ff !important;*/
+    border: 1px solid #4318ff !important;
     border-radius: 25px !important;
 }
 .modal-container{
@@ -70,7 +70,7 @@
 
 .overflow-item {
     overflow-y: auto;
-    max-height: 16vh;
+    max-height: 20vh;
     -ms-overflow-style: none;  /* Internet Explorer and Edge */
     scrollbar-color: #4318ff #282c34;
     scrollbar-width: thin;
@@ -92,3 +92,9 @@
 .overflow-item::-webkit-scrollbar-thumb:active{
     background: #01b574;
 }
+.modal-sm {
+    --bs-modal-width: 450px !important;
+}
+.inverted-icon {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(41deg) brightness(106%) contrast(101%);
+ }
