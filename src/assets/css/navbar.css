@@ -1,0 +1,94 @@
+/* Dapp login buttons */
+.dapp-primary{
+    background-color: #4318ff !important;
+    border-color: #4318ff !important;
+    color: white !important;
+    transition: all 150ms ease-in 0s !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+.dapp-primary:hover,
+.dapp-primary:active{
+    border: 1px solid white !important;
+    color: white !important;
+    transform: scale(1.03) !important;
+}
+.dapp-core-component__extensionLoginButton-styles__no-extension-button-title {
+    color: white !important;
+    display: inline !important;
+    margin-right: 10px ;
+}
+.dapp-core-component__extensionLoginButton-styles__noExtensionButtonContent{
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+.dapp-core-component__dappModalStyles__dappModalHeader{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+.dapp-core-component__dappModalStyles__dappModalContent{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    border-color: #4318ff !important;
+}
+.dapp-core-component__main__card{
+    background-color: #060b28f0 !important;
+    color: white !important;
+    border-top: 1px solid #4318ff !important;
+    border-bottom: 1px solid #4318ff !important;
+    border-radius: 0 !important;
+}
+.dapp-core-component__main__btn-primary {
+    background-color: #4318ff !important;
+    border-color: #4318ff !important;
+    border-radius: 0.75rem !important;
+    transition: all 150ms ease-in 0s !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+.dapp-core-component__main__btn-primary:hover,
+.dapp-core-component__main__btn-primary:active{
+    border: 1px solid white !important;
+    color: white !important;
+    transform: scale(1.03) !important;
+}
+.dapp-core-component__dappModalStyles__dappModalCloseButton{
+    padding: 0.25rem 0.5rem !important;
+}
+.modal-content{
+    background-color: rgba(6, 11, 40, 1) !important;
+    color: white !important;
+    /*border: 1px solid #4318ff !important;*/
+    border-radius: 25px !important;
+}
+.modal-container{
+    padding: 20px;
+    display: block;
+}
+
+.overflow-item {
+    overflow-y: auto;
+    max-height: 16vh;
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-color: #4318ff #282c34;
+    scrollbar-width: thin;
+}
+
+/* Only Chrome */
+.overflow-item::-webkit-scrollbar {
+    width: 5px;
+}
+.overflow-item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px black;
+    border-radius: 10px;
+}
+.overflow-item::-webkit-scrollbar-thumb {
+    background: #4318ff;
+    border-radius: 10px;
+}
+.overflow-item::-webkit-scrollbar-thumb:hover,
+.overflow-item::-webkit-scrollbar-thumb:active{
+    background: #01b574;
+}

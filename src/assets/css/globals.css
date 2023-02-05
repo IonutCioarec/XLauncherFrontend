@@ -6,7 +6,7 @@ body{
     background: linear-gradient(to bottom right, #181818, #4318ff, black) no-repeat fixed center;
     background-color: #030c1d !important;
     background-size: cover;
-    font-family: "Plus Jakarta Display", Helvetica, Arial, sans-serif;
+    font-family: "Plus Jakarta Display", Helvetica, Arial, sans-serif !important;
 }
 *, *::before, *::after{
     margin: 0;
@@ -31,6 +31,9 @@ a.link:hover, .link:hover, a.link:focus, .link:focus {
 }
 
 /*Typography*/
+.font-lighter{
+    font-weight: 200 !important;
+}
 .font-light{
     font-weight: 300 !important;
 }
@@ -183,6 +186,9 @@ h6 {
 .text-black {
     color: #000000 !important;
 }
+.text-lexaloffle-green{
+    color: #00DF33 !important;
+}
 
 /*Background Colors*/
 .bg-primary {
@@ -223,6 +229,10 @@ h6 {
 }
 .bg-black {
     background-color: #000000 !important;
+    color: white;
+}
+.bg-lexaloffle-green{
+    background-color: #00DF33 !important;
     color: white;
 }
 
@@ -488,67 +498,48 @@ h6 {
     align-content: center;
 }
 
-/* Dapp login buttons */
-.dapp-primary{
-    background-color: #4318ff !important;
-    border-color: #4318ff !important;
-    color: white !important;
-    transition: all 150ms ease-in 0s !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-}
-.dapp-primary:hover,
-.dapp-primary:active{
-    border: 1px solid white !important;
-    color: white !important;
-    transform: scale(1.03) !important;
-}
-.dapp-core-component__extensionLoginButton-styles__no-extension-button-title {
-    color: white !important;
-    display: inline !important;
-    margin-right: 10px ;
-}
-.dapp-core-component__extensionLoginButton-styles__noExtensionButtonContent{
-    padding-top: 1px !important;
-    padding-bottom: 1px !important;
-}
-.dapp-core-component__dappModalStyles__dappModalHeader{
-    background-color: #060b28f0 !important;
-    color: white !important;
-    margin-top: 10px;
-    margin-bottom: -20px;
-}
-.dapp-core-component__dappModalStyles__dappModalContent{
-    background-color: #060b28f0 !important;
-    color: white !important;
-    border-color: #4318ff !important;
-}
-.dapp-core-component__main__card{
-    background-color: #060b28f0 !important;
-    color: white !important;
-    border-top: 1px solid #4318ff !important;
-    border-bottom: 1px solid #4318ff !important;
-    border-radius: 0 !important;
-}
-.dapp-core-component__main__btn-primary {
-    background-color: #4318ff !important;
-    border-color: #4318ff !important;
-    border-radius: 0.75rem !important;
-    transition: all 150ms ease-in 0s !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-}
-.dapp-core-component__main__btn-primary:hover,
-.dapp-core-component__main__btn-primary:active{
-    border: 1px solid white !important;
-    color: white !important;
-    transform: scale(1.03) !important;
-}
-.dapp-core-component__dappModalStyles__dappModalCloseButton{
-    padding: 0.25rem 0.5rem !important;
-}
-
 /* Widths */
 .w-60{
     width: 60%;
 }
+
+
+/* Border Radius */
+.b-r-xs{
+    border-radius: 5px !important;
+}
+.b-r-sm{
+    border-radius: 10px !important;
+}
+.b-r-md{
+    border-radius: 15px !important;
+}
+.b-r-lg{
+    border-radius: 20px !important;
+}
+.b-r-xl{
+    border-radius: 25px !important;
+}
+
+/* Margins */
+.m-t-n-xxs{
+    margin-top: -1px;
+}
+.m-t-n-xs{
+    margin-top: -5px;
+}
+.m-t-n-sm{
+    margin-top: -10px;
+}
+.m-t-n-md{
+    margin-top: -15px;
+}
+.m-t-n-lg{
+    margin-top: -20px;
+}
+.m-t-n-xl{
+    margin-top: -25px;
+}
+
+
+/*Others */

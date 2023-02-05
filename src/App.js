@@ -9,10 +9,11 @@ import {
     faCircleXmark,
     faXmark,
     faUser,
-    faUserCircle
+    faUserCircle,
+    faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "pages/dashboard";
 import Staking from "pages/staking";
 import Projects from "pages/projects";
@@ -31,7 +32,8 @@ library.add(
     faCircleXmark,
     faXmark,
     faUser,
-    faUserCircle
+    faUserCircle,
+    faCheck
 );
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
                   <Route path="/staking" element={<Staking />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/team" element={<Team />} />
+                  <Route path='*' element={<Navigate to='/' />} />
               </Routes>
           </BrowserRouter>
       </DappProvider>
