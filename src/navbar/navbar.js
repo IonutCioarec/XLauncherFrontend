@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useGetAccountInfo } from "@multiversx/sdk-dapp/hooks/account";
 import { logout } from '@multiversx/sdk-dapp/utils';
-import { useGetPendingTransactions} from '@multiversx/sdk-dapp/hooks/transactions';
 import { ExtensionLoginButton, WalletConnectLoginButton, LedgerLoginButton, WebWalletLoginButton} from "@multiversx/sdk-dapp/UI";
 import { useProSidebar } from "react-pro-sidebar";
 import Container from 'react-bootstrap/Container';
@@ -11,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCopy} from '@fortawesome/free-regular-svg-icons';
 import {faPowerOff} from "@fortawesome/free-solid-svg-icons";
-import {Account} from "utils/multiversX";
 import Modal from 'react-bootstrap/Modal';
 import "assets/css/navbar.css";
 import RustLogo from "assets/images/rockets/rust.png";
@@ -23,9 +21,9 @@ import LegendaryLogo from "assets/images/rockets/legendary.png";
 import XLHLogo from "assets/images/logo.svg";
 import EGLDLogo from "assets/images/egld-logo.svg";
 import Image from "react-bootstrap/Image";
-import {egldMultiplier, calc2} from "utils/utilities";
+import {multiplier, calc2} from "utils/utilities";
 
-export function Navbar() {
+export function Navbar(props) {
     //Used to detect mobile screen
     const { toggleSidebar, broken } = useProSidebar();
 
@@ -48,12 +46,17 @@ export function Navbar() {
         }, 1500);
     }
 
+    let accountBalance = 0.00;
+    if(account.balance && isLoggedIn){
+        accountBalance = calc2(account.balance / multiplier);
+    }
+
     //Show the connect area if user is not logged in
     const [timeToConnect, setTimeToConnect] = React.useState(false);
     let connectSection = timeToConnect ? (
         <Container>
             <Row className="justify-content-start">
-                <Col xs={12} lg={{offset: 4, span: 4}} className="text-center">
+                <Col xs={12} md={{offset: 2, span: 6}} lg={{offset: 4, span: 4}} className="text-center">
                     <div className="farm-card" >
                         <Row>
                             <Col>
@@ -185,7 +188,7 @@ export function Navbar() {
                                 <Row>
                                     <Col xs={12} className="overflow-item" style={{height: '100%'}}>
                                         <Row>
-                                            <Col lg={{offset: 1, span: 5}}>
+                                            <Col xs={{offset: 1, span: 5}}>
                                                 <Image
                                                     width={18}
                                                     height={18}
@@ -193,9 +196,9 @@ export function Navbar() {
                                                     src={XLHLogo}
                                                     style={{marginTop: '-3px', marginRight: '5px'}}
                                                 />
-                                                <p className="font-size-sm d-inline">XLH: 22</p>
+                                                <p className="font-size-sm d-inline">XLH: {props.tokenList.xlh ? props.tokenList.xlh: 0}</p>
                                             </Col>
-                                            <Col lg={{offset: 1, span: 5}}>
+                                            <Col xs={{offset: 1, span: 5}}>
                                                 <Image
                                                     width={16}
                                                     height={16}
@@ -204,7 +207,9 @@ export function Navbar() {
                                                     style={{marginTop: '-3px', marginRight: '5px'}}
                                                     className="inverted-icon"
                                                 />
-                                                <p className="font-size-sm d-inline">EGLD: {calc2(account.balance / egldMultiplier)} </p>
+                                                <p className="font-size-sm d-inline">
+                                                    EGLD: {accountBalance}
+                                                </p>
                                             </Col>
                                         </Row>
                                     </Col>
@@ -213,8 +218,9 @@ export function Navbar() {
 
                                 <Row>
                                     <Col xs={12} className="text-center">
-                                        <p className="h6 text-primary text-center mt-4">
-                                            XLH Origins NFTS ():
+                                        <p className="h6 text-primary text-center mt-5">
+                                            XLH Origins NFTS ({props.accountNFTS.rust + props.accountNFTS.bronze + props.accountNFTS.silver
+                                        + props.accountNFTS.gold + props.accountNFTS.platinum + props.accountNFTS.legendary}):
                                         </p>
                                         <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
                                         <Row>
@@ -225,7 +231,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={RustLogo}
                                                 />
-                                                <p className="font-size-sm">Rust: 2</p>
+                                                <p className="font-size-sm">Rust: {props.accountNFTS.rust}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -234,7 +240,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={BronzeLogo}
                                                 />
-                                                <p className="font-size-sm">Bronze: 2</p>
+                                                <p className="font-size-sm">Bronze: {props.accountNFTS.bronze}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -243,7 +249,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={SilverLogo}
                                                 />
-                                                <p className="font-size-sm">Silver: 2</p>
+                                                <p className="font-size-sm">Silver: {props.accountNFTS.silver}</p>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -254,7 +260,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={GoldLogo}
                                                 />
-                                                <p className="font-size-sm ">Gold: 2</p>
+                                                <p className="font-size-sm ">Gold: {props.accountNFTS.gold}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -263,7 +269,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={PlatinumLogo}
                                                 />
-                                                <p className="font-size-sm">Platinum: 2</p>
+                                                <p className="font-size-sm">Platinum: {props.accountNFTS.platinum}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -272,7 +278,7 @@ export function Navbar() {
                                                     alt="25x26"
                                                     src={LegendaryLogo}
                                                 />
-                                                <p className="font-size-sm">Legendary: 2</p>
+                                                <p className="font-size-sm">Legendary: {props.accountNFTS.legendary}</p>
                                             </Col>
                                         </Row>
                                     </Col>
@@ -335,7 +341,7 @@ export function Navbar() {
                 <React.Fragment>
                     <Container>
                         <Row>
-                            <Col lg={{offset: 10, span: 2}}>
+                            <Col xs={{offset: 10, span: 2}}>
                                 <Button
                                     variant="outline-light"
                                     size="sm"
@@ -388,7 +394,7 @@ export function Navbar() {
                 <React.Fragment>
                     <Container>
                         <Row>
-                            <Col lg={{offset: 10, span: 2}}>
+                            <Col xs={{offset: 10, span: 2}}>
                                 <Button
                                     variant="outline-light"
                                     size="sm"

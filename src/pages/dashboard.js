@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from 'layout/layout';
 
-function Dashboard() {
+function Dashboard(props) {
     return (
-        <Layout>
+        <Layout tokenList={props.tokenList} accountNFTS={props.accountNFTS}>
             <p style={{fontSize: '50px', color: 'white'}}>Dashboard</p>
         </Layout>
     );
