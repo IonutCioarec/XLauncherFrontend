@@ -1,4 +1,3 @@
-// Default multiversx network configuration (constants).
 // Customized with our walletConnectV2ProjectId
 export const networkConfig = {
     devnet: {
@@ -16,7 +15,7 @@ export const networkConfig = {
         walletAddress: 'https://devnet-wallet.multiversx.com',
         apiAddress: 'https://devnet-api.multiversx.com',
         explorerAddress: 'https://devnet-explorer.multiversx.com',
-        apiTimeout: '4000',
+        apiTimeout: '6000',
         walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
 
@@ -35,7 +34,7 @@ export const networkConfig = {
         walletAddress: 'https://testnet-wallet.multiversx.com',
         apiAddress: 'https://testnet-api.multiversx.com',
         explorerAddress: 'https://testnet-explorer.multiversx.com',
-        apiTimeout: '4000',
+        apiTimeout: '6000',
         walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
 
@@ -54,7 +53,7 @@ export const networkConfig = {
         walletAddress: 'https://wallet.multiversx.com',
         apiAddress: 'https://api.multiversx.com',
         explorerAddress: 'https://explorer.multiversx.com',
-        apiTimeout: '4000',
+        apiTimeout: '6000',
         walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
 };

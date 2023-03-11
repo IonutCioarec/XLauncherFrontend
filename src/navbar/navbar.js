@@ -23,7 +23,6 @@ import EGLDLogo from "assets/images/egld-logo.svg";
 import Image from "react-bootstrap/Image";
 import {multiplier, calc2} from "utils/utilities";
 import {allTokens, customConfig, defaultWalletData, networkId} from "config/customConfig";
-import {useGetPendingTransactions} from "@multiversx/sdk-dapp/hooks/transactions";
 import {getAccountNFTS, getAccountTokens} from "utils/api";
 
 export function Navbar() {
@@ -37,9 +36,6 @@ export function Navbar() {
     //Get the user address
     const {address, account} = useGetAccountInfo();
     const isLoggedIn = Boolean(address);
-
-    //Check if there is any loading transactions
-    const loadingTransactions = useGetPendingTransactions().hasPendingTransactions;
 
     //Tokens + NFTS APIs
     const tokensAPI = config.apiLink + address + '/tokens?size=2000';
@@ -55,7 +51,6 @@ export function Navbar() {
         })
     }
 
-    console.log("walletData " + JSON.stringify(walletData, null, 2))
     //Used for "my account" modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -75,8 +70,8 @@ export function Navbar() {
     }
 
     let accountBalance = 0.00;
-    if(account.balance && isLoggedIn){
-        accountBalance = 0;
+    if(account.balance && account.balance !== "..." && !isNaN(account.balance)  && isLoggedIn){
+        accountBalance = calc2(account.balance / multiplier);
     }
 
     //Show the connect area if user is not logged in
@@ -125,7 +120,7 @@ export function Navbar() {
                                 <Col>
                                     <WalletConnectLoginButton
                                         callbackRoute="/"
-                                        loginButtonText={"xPortal"}
+                                        loginButtonText={"xPortal App"}
                                         isWalletConnectV2={true}
                                         className="btn btn-sm dapp-primary font-size-sm w-60"
                                     />
