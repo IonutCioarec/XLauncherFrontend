@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from 'layout/layout';
 
-function Projects(props) {
+function Projects() {
     return (
-        <Layout tokenList={props.tokenList} accountNFTS={props.accountNFTS}>
+        <Layout>
             <p style={{fontSize: '50px', color: 'white'}}>Projects</p>
         </Layout>
     );

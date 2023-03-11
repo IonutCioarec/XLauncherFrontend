@@ -1,13 +1,5 @@
 // Default multiversx network configuration (constants).
-// Change if you need, but by default, you shouldn't have to do that.
-
-export const DEFAULT_MIN_GAS_LIMIT = 50_000;
-
-export const DAPP_CONFIG_ENDPOINT = '/dapp/config';
-export const DAPP_INIT_ROUTE = '/dapp/init';
-
-export const chainType = 'devnet';
-
+// Customized with our walletConnectV2ProjectId
 export const networkConfig = {
     devnet: {
         skipFetchFromServer: true,
@@ -25,6 +17,7 @@ export const networkConfig = {
         apiAddress: 'https://devnet-api.multiversx.com',
         explorerAddress: 'https://devnet-explorer.multiversx.com',
         apiTimeout: '4000',
+        walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
 
     testnet: {
@@ -43,6 +36,7 @@ export const networkConfig = {
         apiAddress: 'https://testnet-api.multiversx.com',
         explorerAddress: 'https://testnet-explorer.multiversx.com',
         apiTimeout: '4000',
+        walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
 
     mainnet: {
@@ -61,9 +55,6 @@ export const networkConfig = {
         apiAddress: 'https://api.multiversx.com',
         explorerAddress: 'https://explorer.multiversx.com',
         apiTimeout: '4000',
+        walletConnectV2ProjectId: '3eed50c3b154388063a0920505f8322a'
     },
-};
-
-export const getActiveNetworkConfiguration = () => {
-    return networkConfig[chainType];
 };

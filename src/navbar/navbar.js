@@ -22,19 +22,47 @@ import XLHLogo from "assets/images/logo.svg";
 import EGLDLogo from "assets/images/egld-logo.svg";
 import Image from "react-bootstrap/Image";
 import {multiplier, calc2} from "utils/utilities";
+import {allTokens, customConfig, defaultWalletData, networkId} from "config/customConfig";
+import {useGetPendingTransactions} from "@multiversx/sdk-dapp/hooks/transactions";
+import {getAccountNFTS, getAccountTokens} from "utils/api";
 
-export function Navbar(props) {
+export function Navbar() {
     //Used to detect mobile screen
-    const { toggleSidebar, broken } = useProSidebar();
+    const {toggleSidebar, broken} = useProSidebar();
 
-    // Get the user address
-    const { address, account } = useGetAccountInfo();
+    //Set the config network
+    const config = customConfig[networkId];
+    const tokens = allTokens[networkId];
+
+    //Get the user address
+    const {address, account} = useGetAccountInfo();
     const isLoggedIn = Boolean(address);
 
+    //Check if there is any loading transactions
+    const loadingTransactions = useGetPendingTransactions().hasPendingTransactions;
+
+    //Tokens + NFTS APIs
+    const tokensAPI = config.apiLink + address + '/tokens?size=2000';
+    const nftsAPI = config.apiLink + address + '/nfts?size=1000';
+
+    const [walletData, setWalletData] = useState(defaultWalletData);
+    const getWalletData = async () => {
+        const newTokenList = await getAccountTokens(tokensAPI, tokens);
+        const newNftsList = await getAccountNFTS(nftsAPI);
+        setWalletData({
+            tokens: newTokenList,
+            nfts: newNftsList
+        })
+    }
+
+    console.log("walletData " + JSON.stringify(walletData, null, 2))
     //Used for "my account" modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        getWalletData();
+    }
 
     //Copy to Clipboard Utility
     const [isCopied, setIsCopied] = React.useState(false);
@@ -48,73 +76,74 @@ export function Navbar(props) {
 
     let accountBalance = 0.00;
     if(account.balance && isLoggedIn){
-        accountBalance = calc2(account.balance / multiplier);
+        accountBalance = 0;
     }
 
     //Show the connect area if user is not logged in
     const [timeToConnect, setTimeToConnect] = React.useState(false);
     let connectSection = timeToConnect ? (
-        <Container>
-            <Row className="justify-content-start">
-                <Col xs={12} md={{offset: 2, span: 6}} lg={{offset: 4, span: 4}} className="text-center">
-                    <div className="farm-card" >
-                        <Row>
-                            <Col>
-                                <Button
-                                    variant="light" size="sm"
-                                    className="btn btn-light float-end"
-                                    style={{width: '30px'}}
-                                    onClick={() =>  setTimeToConnect(false)}
-                                >
-                                    <FontAwesomeIcon icon="fa-xmark" />
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <p className="h6 text-white font-size-lg">Connect to a wallet</p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="text-center">
-                                <WebWalletLoginButton
-                                    callbackRoute="/"
-                                    loginButtonText="Web wallet"
-                                    className="btn btn-sm dapp-primary font-size-sm w-60"
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <LedgerLoginButton
-                                    loginButtonText="Ledger"
-                                    callbackRoute="/"
-                                    className="btn btn-sm dapp-primary font-size-sm w-60"
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <WalletConnectLoginButton
-                                    callbackRoute="/"
-                                    loginButtonText="Maiar"
-                                    className="btn btn-sm dapp-primary font-size-sm w-60"
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mb-4">
-                            <Col>
-                                <ExtensionLoginButton
-                                    callbackRoute="/"
-                                    loginButtonText="Extension"
-                                    className="btn btn-block btn-sm dapp-primary font-size-sm w-60 mt-1"
-                                />
-                            </Col>
-                        </Row>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
+            <Container>
+                <Row className="justify-content-start">
+                    <Col xs={12} md={{offset: 2, span: 6}} lg={{offset: 4, span: 4}} className="text-center">
+                        <div className="farm-card" >
+                            <Row>
+                                <Col>
+                                    <Button
+                                        variant="light" size="sm"
+                                        className="btn btn-light float-end"
+                                        style={{width: '30px'}}
+                                        onClick={() =>  setTimeToConnect(false)}
+                                    >
+                                        <FontAwesomeIcon icon="fa-xmark" />
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <p className="h6 text-white font-size-lg">Connect to a wallet</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="text-center">
+                                    <WebWalletLoginButton
+                                        callbackRoute="/swap"
+                                        loginButtonText="Web wallet"
+                                        className="btn btn-sm dapp-primary font-size-sm w-60"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <LedgerLoginButton
+                                        loginButtonText="Ledger"
+                                        callbackRoute="/"
+                                        className="btn btn-sm dapp-primary font-size-sm w-60"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <WalletConnectLoginButton
+                                        callbackRoute="/"
+                                        loginButtonText={"xPortal"}
+                                        isWalletConnectV2={true}
+                                        className="btn btn-sm dapp-primary font-size-sm w-60"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="mb-4">
+                                <Col>
+                                    <ExtensionLoginButton
+                                        callbackRoute="/"
+                                        loginButtonText="Extension"
+                                        className="btn btn-block btn-sm dapp-primary font-size-sm w-60 mt-1"
+                                    />
+                                </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         ): (
             ''
         )
@@ -146,37 +175,37 @@ export function Navbar(props) {
                         </Col>
                     </Row>
                     <Container>
-                    <Row>
-                        <Col xs={12} className="text-center">
-                            <p className="h6 font-medium text-primary text-center mt-2">
-                                Address:
-                            </p>
-                            <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
-                            <Row>
-                                <Col xs={10}>
-                                    <p className="font-size-sm font-lighter">{address.slice(0,17)} ... {address.slice(50,62)}</p>
-                                </Col>
-                                <Col xs={2}>
-                                    {!isCopied ? (
-                                        <Button
-                                            variant="link"
-                                            onClick={() => CopyToClipboard(address)}
-                                            className="text-white m-t-n-sm"
-                                        >
-                                            <FontAwesomeIcon icon={faCopy} />
-                                        </Button>
-                                    ):(
-                                        <Button
-                                            variant="link"
-                                            className="text-white m-t-n-sm"
-                                        >
-                                            <FontAwesomeIcon icon="fa-check" />
-                                        </Button>
-                                    )}
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
+                        <Row>
+                            <Col xs={12} className="text-center">
+                                <p className="h6 font-medium text-primary text-center mt-2">
+                                    Address:
+                                </p>
+                                <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
+                                <Row>
+                                    <Col xs={10}>
+                                        <p className="font-size-sm font-lighter">{address.slice(0,17)} ... {address.slice(50,62)}</p>
+                                    </Col>
+                                    <Col xs={2}>
+                                        {!isCopied ? (
+                                            <Button
+                                                variant="link"
+                                                onClick={() => CopyToClipboard(address)}
+                                                className="text-white m-t-n-sm"
+                                            >
+                                                <FontAwesomeIcon icon={faCopy} />
+                                            </Button>
+                                        ):(
+                                            <Button
+                                                variant="link"
+                                                className="text-white m-t-n-sm"
+                                            >
+                                                <FontAwesomeIcon icon="fa-check" />
+                                            </Button>
+                                        )}
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
                     </Container>
                     <Container>
                         <Row>
@@ -196,7 +225,7 @@ export function Navbar(props) {
                                                     src={XLHLogo}
                                                     style={{marginTop: '-3px', marginRight: '5px'}}
                                                 />
-                                                <p className="font-size-sm d-inline">XLH: {props.tokenList.xlh ? props.tokenList.xlh: 0}</p>
+                                                <p className="font-size-sm d-inline">XLH: {walletData.tokens.xlh}</p>
                                             </Col>
                                             <Col xs={{offset: 1, span: 5}}>
                                                 <Image
@@ -219,8 +248,7 @@ export function Navbar(props) {
                                 <Row>
                                     <Col xs={12} className="text-center">
                                         <p className="h6 text-primary text-center mt-5">
-                                            XLH Origins NFTS ({props.accountNFTS.rust + props.accountNFTS.bronze + props.accountNFTS.silver
-                                        + props.accountNFTS.gold + props.accountNFTS.platinum + props.accountNFTS.legendary}):
+                                            XLH Origins NFTS ({Object.values(walletData.nfts.xlhOrigins).reduce((acc, val) => acc + val, 0)}):
                                         </p>
                                         <div className="light-divider" style={{width: '100%', marginLeft: 0}}> </div>
                                         <Row>
@@ -231,7 +259,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={RustLogo}
                                                 />
-                                                <p className="font-size-sm">Rust: {props.accountNFTS.rust}</p>
+                                                <p className="font-size-sm">Rust: {walletData.nfts.xlhOrigins.rust}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -240,7 +268,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={BronzeLogo}
                                                 />
-                                                <p className="font-size-sm">Bronze: {props.accountNFTS.bronze}</p>
+                                                <p className="font-size-sm">Bronze: {walletData.nfts.xlhOrigins.bronze}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -249,7 +277,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={SilverLogo}
                                                 />
-                                                <p className="font-size-sm">Silver: {props.accountNFTS.silver}</p>
+                                                <p className="font-size-sm">Silver: {walletData.nfts.xlhOrigins.silver}</p>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -260,7 +288,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={GoldLogo}
                                                 />
-                                                <p className="font-size-sm ">Gold: {props.accountNFTS.gold}</p>
+                                                <p className="font-size-sm ">Gold: {walletData.nfts.xlhOrigins.gold}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -269,7 +297,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={PlatinumLogo}
                                                 />
-                                                <p className="font-size-sm">Platinum: {props.accountNFTS.platinum}</p>
+                                                <p className="font-size-sm">Platinum: {walletData.nfts.xlhOrigins.platinum}</p>
                                             </Col>
                                             <Col xs={4}>
                                                 <Image
@@ -278,7 +306,7 @@ export function Navbar(props) {
                                                     alt="25x26"
                                                     src={LegendaryLogo}
                                                 />
-                                                <p className="font-size-sm">Legendary: {props.accountNFTS.legendary}</p>
+                                                <p className="font-size-sm">Legendary: {walletData.nfts.xlhOrigins.legendary}</p>
                                             </Col>
                                         </Row>
                                     </Col>

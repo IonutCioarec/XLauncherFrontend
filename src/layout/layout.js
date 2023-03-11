@@ -13,7 +13,7 @@ function Layout(props) {
             <Container className="main-container">
                     <Row>
                         <Col>
-                            <Navbar tokenList={props.tokenList} accountNFTS={props.accountNFTS}/>
+                            <Navbar />
                             {props.children}
                         </Col>
                     </Row>
