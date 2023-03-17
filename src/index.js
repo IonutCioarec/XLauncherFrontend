@@ -6,6 +6,7 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "@fontsource/plus-jakarta-sans";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
