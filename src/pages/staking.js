@@ -448,7 +448,6 @@ function Staking() {
             return () => window.clearInterval(interval);
         }
     }, []);
-    console.log("claimUnstakedAmount " + claimUnstakedAmount);
 
     return (
         <Layout>
