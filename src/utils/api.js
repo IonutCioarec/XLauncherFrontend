@@ -153,7 +153,7 @@ export const contractQuery = async (networkProvider, abiFile, scAddress, scName,
         let { firstValue } = resultsParser.parseQueryResponse(queryResponse, endpointDefinition);
 
         //console.log("firstValue " + JSON.stringify(firstValue.valueOf(), null, 2));
-        return firstValue.valueOf();
+        if( firstValue) return firstValue.valueOf();
 
     } catch (error) {
         console.log(error);
