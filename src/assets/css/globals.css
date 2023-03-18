@@ -567,7 +567,7 @@ h6 {
 .vertical-timeline::before {
     left: 12px !important;
     width: 1px !important;
-    height: 95% !important;
+    height: 97.5% !important;
 }
 .vertical-timeline-element-icon {
     width: 25px !important;
