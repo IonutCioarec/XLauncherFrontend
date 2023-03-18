@@ -94,7 +94,7 @@ export default function ProjectCard({date, banner, website, linkedin, twitter, f
                 : ('')}
             </div>
 
-            <VerticalTimeline layout="1-column">
+            <VerticalTimeline layout="1-column" animate={false}>
                 {details.map((element, index) =>(
                     <VerticalTimelineElement
                         key={index}
