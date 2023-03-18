@@ -65,7 +65,9 @@ export function Sidenav() {
             backgroundColor={'transparent'}
             className="sidebar"
             rootStyles={{
-                border: 'none'
+                border: 'none',
+                position: 'sticky',
+                top: '2.5%'
             }}
         >
             <div className='sidebar-container'>

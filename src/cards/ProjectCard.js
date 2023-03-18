@@ -38,7 +38,7 @@ export default function ProjectCard({date, banner, website, linkedin, twitter, f
                 <p className="text-white h1" color="white">
                     {date}
                 </p>
-                <Card.Img variant="top" src={banner} style={{ borderRadius: "15px", height: "400px" }} />
+                <Card.Img variant="top" src={banner} className="img-top" />
             </div>
             <div className="d-flex justify-content-center text-white mt-1 mb-3">
                 {website ?

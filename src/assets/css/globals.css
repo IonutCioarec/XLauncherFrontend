@@ -601,3 +601,17 @@ h6 {
 .image-gallery-slide .image-gallery-image {
     object-fit: fill !important;
 }
+.img-top{
+    border-radius: 15px;
+    height: 400px;
+}
+@media screen and (max-width: 576px){
+    .img-top{
+        border-radius: 15px;
+        height: 150px;
+    }
+    .image-gallery-slide .image-gallery-image {
+        object-fit: fill !important;
+        height: 200px !important;
+    }
+}
