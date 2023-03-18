@@ -561,3 +561,43 @@ h6 {
 
 
 /*Others */
+.vertical-timeline {
+    padding: 0 !important;
+}
+.vertical-timeline::before {
+    left: 12px !important;
+    width: 1px !important;
+    height: 95% !important;
+}
+.vertical-timeline-element-icon {
+    width: 25px !important;
+    height: 25px !important;
+    -webkit-box-shadow: 0 0 0 2px #fff !important;
+    box-shadow: 0 0 0 2px #fff !important;
+    z-index: 2;
+}
+.vertical-timeline-element-content:after {
+    content: none !important;
+    display: table;
+    clear: both;
+}
+.vertical-timeline-element-content:after {
+    content: none !important;
+}
+.vertical-timeline-element-content {
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 1rem !important;
+    margin-left: 36px !important;
+}
+.vertical-timeline-element {
+    margin: 0 !important;
+}
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+    border-radius: 30px !important;
+}
+
+.image-gallery-slide .image-gallery-image {
+    object-fit: fill !important;
+}

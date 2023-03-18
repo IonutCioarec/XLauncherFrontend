@@ -18,6 +18,9 @@ import Dashboard from "pages/dashboard";
 import Staking from "pages/staking";
 import Projects from "pages/projects";
 import Team from "pages/team";
+import Zero2Infinity from "pages/projects/Zero2Infinity";
+import EstarGames from "pages/projects/EstarGames";
+import VestaXFinance from "pages/projects/VestaXFinance";
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import {NotificationModal, SignTransactionsModals, TransactionsToastList} from "@multiversx/sdk-dapp/UI";
 import {networkId} from "config/customConfig";
@@ -57,6 +60,9 @@ function App() {
                   <Route path="/staking" element={<Staking />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/team" element={<Team />} />
+                  <Route path="/projects/zero-2-infinity" element={<Zero2Infinity />} />
+                  <Route path="/projects/estar-games" element={<EstarGames />} />
+                  <Route path="/projects/vestax-finance" element={<VestaXFinance />} />
                   <Route path='*' element={<Navigate to='/' />} />
               </Routes>
           </BrowserRouter>

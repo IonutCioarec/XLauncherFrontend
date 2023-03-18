@@ -68,3 +68,13 @@ export function intlNumberFormat(number, locales, minDigits, maxDigits){
         maximumFractionDigits: maxDigits? maxDigits : 2,
     }).format(number);
 }
+
+export const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null;
+}
+
+export const openInSameTab = (url) => {
+    const newWindow = window.open(url, '_self', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null;
+}

@@ -7,7 +7,6 @@ import profile3 from "assets/images/vestaXFinancesMini2.png";
 import profile3b from "assets/images/vestaXFinancesMini.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Card from "@mui/material/Card";
 
 function Projects() {
 
@@ -34,7 +33,7 @@ function Projects() {
                             "
                             action={{
                                 type: "internal",
-                                route: "/projects/Zero2Infinity",
+                                route: "/projects/zero-2-infinity",
                                 color: "white",
                                 label: "view",
                             }}
@@ -53,7 +52,7 @@ function Projects() {
                             "
                             action={{
                                 type: "internal",
-                                route: "/projects/EstarGames",
+                                route: "/projects/estar-games",
                                 color: "white",
                                 label: "view",
                             }}
@@ -72,7 +71,7 @@ function Projects() {
                             "
                             action={{
                                 type: "internal",
-                                route: "/projects/VestaXFinance",
+                                route: "/projects/vestax-finance",
                                 color: "white",
                                 label: "view",
                             }}
