@@ -10,6 +10,7 @@ import { MicroBlog } from 'assets/svg/MicroBlog';
 import { FilePen } from "assets/svg/FilePen";
 import { SidenavHeader } from 'sidenav/components/sidenavHeader';
 import { SidenavFooter } from 'sidenav/components/sidenavFooter';
+import FilterIcon from '@mui/icons-material/Filter';
 import 'assets/css/sidenav.css';
 
 
@@ -67,7 +68,7 @@ export function Sidenav() {
             rootStyles={{
                 border: 'none',
                 position: 'sticky',
-                top: '2.5%'
+                top: '2.2%'
             }}
         >
             <div className='sidebar-container'>
@@ -101,25 +102,31 @@ export function Sidenav() {
                         >
                             Projects
                         </MenuItem>
+                        <MenuItem
+                            icon={<FilterIcon />}
+                            component={<a href="https://xoxno.com/collection/XLHO-5135c9?filters=%7B%22name%22%3A%22%22%2C%22order%22%3A%22Price%3A+Low+to+High%22%2C%22orderValue%22%3A%22saleInfoNft%2Fmin_bid_short+asc%22%2C%22tokens%22%3A%5B%5D%2C%22attributes%22%3A%5B%5D%2C%22saleType%22%3A%22Nft%22%2C%22tab%22%3A%22Staking%22%2C%22viewMode%22%3A%22cards%22%7D" target="_blank" rel="noreferrer"> </a>}
+                        >
+                            Stake NFTS
+                        </MenuItem>
                         {/*<MenuItem*/}
                         {/*    label="Presale"*/}
                         {/*    icon={<ShoppingCart />}*/}
                         {/*>*/}
                         {/*    Presale*/}
                         {/*</MenuItem>*/}
+                    </Menu>
+
+                    <div className='sidebar-label-divider'>
+                        <p style={{marginTop: '5px'}}> Extra </p>
+                    </div>
+
+                    <Menu menuItemStyles={menuItemStyles}>
                         <MenuItem
                             icon={<FilePen />}
                             component={<a href="https://docs.google.com/forms/d/e/1FAIpQLSf69Ulfxxb6TErJJFpGIqtG0TG-ZM1o_CC0b4AR9GjyYA7T2Q/viewform" target="_blank" rel="noreferrer"> </a>}
                         >
                             Apply to us
                         </MenuItem>
-                    </Menu>
-
-                    <div className='sidebar-label-divider'>
-                        <p style={{marginTop: '30px'}}> Extra </p>
-                    </div>
-
-                    <Menu menuItemStyles={menuItemStyles}>
                         <MenuItem
                             icon={<MicroBlog />}
                             component={<a href="https://medium.com/@xlauncher" target="_blank" rel="noreferrer"> </a>}
