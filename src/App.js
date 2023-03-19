@@ -55,8 +55,8 @@ function App() {
           <SignTransactionsModals />
           <BrowserRouter>
               <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/dashboard" element={<Dashboard />}/>
+                  <Route path="/" element={<Staking />} />
+                  {/*<Route path="/dashboard" element={<Dashboard />}/>*/}
                   <Route path="/staking" element={<Staking />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/team" element={<Team />} />

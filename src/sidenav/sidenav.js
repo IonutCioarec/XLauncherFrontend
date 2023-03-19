@@ -78,19 +78,19 @@ export function Sidenav() {
                         <p> General </p>
                     </div>
                     <Menu menuItemStyles={menuItemStyles}>
-                        <MenuItem
-                            label="Dashboard"
-                            icon={<BarChart />}
-                            component={<Link to="/dashboard"/>}
-                            active={window.location.pathname === "/dashboard" || window.location.pathname === "/"}
-                        >
-                            Dashboard
-                        </MenuItem>
+                        {/*<MenuItem*/}
+                        {/*    label="Dashboard"*/}
+                        {/*    icon={<BarChart />}*/}
+                        {/*    component={<Link to="/dashboard"/>}*/}
+                        {/*    active={window.location.pathname === "/dashboard" || window.location.pathname === "/"}*/}
+                        {/*>*/}
+                        {/*    Dashboard*/}
+                        {/*</MenuItem>*/}
                         <MenuItem
                             label="Staking"
                             icon={<Stake />}
                             component={<Link to="/staking"/>}
-                            active={window.location.pathname === "/staking"}
+                            active={window.location.pathname === "/staking" || window.location.pathname === "/"}
                         >
                             Staking
                         </MenuItem>
@@ -133,14 +133,14 @@ export function Sidenav() {
                         >
                             Blog
                         </MenuItem>
-                        <MenuItem
-                            label="Team"
-                            icon={<Users />}
-                            component={<Link to="/team"/>}
-                            active={window.location.pathname === "/team"}
-                        >
-                            Team
-                        </MenuItem>
+                        {/*<MenuItem*/}
+                        {/*    label="Team"*/}
+                        {/*    icon={<Users />}*/}
+                        {/*    component={<Link to="/team"/>}*/}
+                        {/*    active={window.location.pathname === "/team"}*/}
+                        {/*>*/}
+                        {/*    Team*/}
+                        {/*</MenuItem>*/}
                     </Menu>
                 </div>
                 <SidenavFooter/>
