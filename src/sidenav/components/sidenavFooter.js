@@ -15,7 +15,7 @@ export const SidenavFooter = () => {
                 </div>
                 <div className='card-container'>
                     <p className="h6">Need more info?</p>
-                    <p style={{fontSize: '13px' , marginTop: '-7px'}}>Check our whitelist</p>
+                    <p style={{fontSize: '13px' , marginTop: '-7px'}}>Check our whitepaper</p>
                 </div>
                 <div className='d-grid gap-2 button-container' >
                     <a href={codeUrl} target='_blank' rel="noreferrer" className='btn btn-gradient-dark btn-sm'>

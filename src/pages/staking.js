@@ -449,6 +449,14 @@ function Staking() {
         }
     }, []);
 
+    useEffect(() => {
+        if(isLoggedIn) {
+            getClientReportData();
+            getClientStateData();
+            getClientUnstakeStateData();
+        }
+    }, [isLoggedIn]);
+
     return (
         <Layout>
             <p className="text-white font-bold mt-4 ms-2" style={{fontSize: '40px'}}>Staking</p>
