@@ -18,6 +18,7 @@ import Dashboard from "pages/dashboard";
 import Staking from "pages/staking";
 import Projects from "pages/projects";
 import Team from "pages/team";
+import Admin from "pages/admin";
 import Zero2Infinity from "pages/projects/Zero2Infinity";
 import EstarGames from "pages/projects/EstarGames";
 import VestaXFinance from "pages/projects/VestaXFinance";
@@ -60,6 +61,7 @@ function App() {
                   <Route path="/staking" element={<Staking />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/team" element={<Team />} />
+                  <Route path="/admin" element={<Admin />} />
                   <Route path="/projects/zero-2-infinity" element={<Zero2Infinity />} />
                   <Route path="/projects/estar-games" element={<EstarGames />} />
                   <Route path="/projects/vestax-finance" element={<VestaXFinance />} />
