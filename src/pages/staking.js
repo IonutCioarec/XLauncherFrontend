@@ -304,7 +304,7 @@ function Staking() {
     let { unstakedAmount: unstakedAmount3, unstakedEntry: unstakedEntry3, unlockedUnstake: unlockedUnstake3, unlockedTime: unlockedTime3 } = getUnstakedData(clientStateData3, 15552000);
 
     //Claim unstake
-    const [claimUnstakedAmount, setClaimUnstakedAmount] = useState("0");
+    const [claimUnstakedAmount, setClaimUnstakedAmount] = useState(0);
     const [claimUnstakedEntry, setClaimUnstakedEntry] = useState("");
     const [claimUnlockedUnstake, setClaimUnlockedUnstake] = useState(true);
     const [claimUnlockedTime, setClaimUnlockedTime] = useState("Claim Unstake");
@@ -352,7 +352,7 @@ function Staking() {
             setClaimUnlockedTime(claimUnlockedTime);
             setClaimUnlockedUnstake(claimUnlockedUnstake);
         } else {
-            setClaimUnstakedAmount("0");
+            setClaimUnstakedAmount(0);
             setClaimUnstakedEntry('');
             setClaimUnlockedTime('Claim Unstake');
             setClaimUnlockedUnstake(true);
@@ -448,14 +448,6 @@ function Staking() {
             return () => window.clearInterval(interval);
         }
     }, []);
-
-    useEffect(() => {
-        if(isLoggedIn) {
-            getClientReportData();
-            getClientStateData();
-            getClientUnstakeStateData();
-        }
-    }, [isLoggedIn]);
 
     return (
         <Layout>
@@ -666,7 +658,7 @@ function Staking() {
                     />
                 </Col>
             </Row>
-            {claimUnstakedAmount > 0 ? (
+            {claimUnstakedAmount ? (
                 <Row className="mt-5">
                     <Col xs={12} lg={4}>
                         <CompleteUnstakeCard
