@@ -87,7 +87,7 @@ function Staking() {
             farm3Amount,
             farm3Rewards
         });
-    }
+    };
 
     //Get client report data query
     const [clientStateData1, setClientStateData1] = useState([]);
@@ -125,7 +125,7 @@ function Staking() {
             setClientStateData2(pool2);
             setClientStateData3(pool3);
         }
-    }
+    };
 
     //Processing the data from getClientStateData function
     const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
@@ -155,7 +155,7 @@ function Staking() {
                 </Col>
             </Row>
         )
-    })
+    });
 
     let cs3Aux = clientStateData3.sort((a,b) => a.pool_time_stamp_entry > b.pool_time_stamp_entry? 1 : -1);
     const client3 =  Object.values(cs3Aux).map(person3 => {
@@ -183,7 +183,7 @@ function Staking() {
                 </Col>
             </Row>
         )
-    })
+    });
 
     //Get Account Tokens Balance
     const [xlhBalance, setXlhBalance] = useState(0);
@@ -192,7 +192,7 @@ function Staking() {
         if(newTokenList.xlh){
             setXlhBalance(newTokenList.xlh);
         }
-    }
+    };
 
     //Set the amount of xlh for staking from the input or max button
     const [xlhAmountS, setXlhAmountS] = useState(0);
@@ -204,7 +204,7 @@ function Staking() {
     };
     const setMaxAmountS = () => {
         setXlhAmountS(calc2(xlhBalance));
-    }
+    };
 
     //Calculate the gas fee limits
     const clientStateDataGasFee = [clientStateData1, clientStateData2, clientStateData3];
@@ -239,7 +239,7 @@ function Staking() {
     };
     const setMaxAmountU = (maxU) => {
         setXlhAmountU(calc2(maxU));
-    }
+    };
 
     //Unstake Function settings
     const [openU1, setOpenU1] = useState(false);
@@ -298,7 +298,7 @@ function Staking() {
             }
         });
         return { unstakedAmount, unstakedEntry, unlockedUnstake, unlockedTime };
-    }
+    };
 
     let { unstakedAmount: unstakedAmount2, unstakedEntry: unstakedEntry2, unlockedUnstake: unlockedUnstake2, unlockedTime: unlockedTime2 } = getUnstakedData(clientStateData2, 5184000);
     let { unstakedAmount: unstakedAmount3, unstakedEntry: unstakedEntry3, unlockedUnstake: unlockedUnstake3, unlockedTime: unlockedTime3 } = getUnstakedData(clientStateData3, 15552000);
@@ -357,7 +357,7 @@ function Staking() {
             setClaimUnlockedTime('Claim Unstake');
             setClaimUnlockedUnstake(true);
         }
-    }
+    };
 
     //Calculate the farms apr for 3 days
     let apr1 = 0.0015 * clientReportData["farm1Amount"];
