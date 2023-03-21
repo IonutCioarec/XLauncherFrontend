@@ -101,7 +101,7 @@ export function Navbar() {
                             <Row>
                                 <Col className="text-center">
                                     <WebWalletLoginButton
-                                        callbackRoute="/swap"
+                                        callbackRoute="/"
                                         loginButtonText="Web wallet"
                                         className="btn btn-sm dapp-primary font-size-sm w-60"
                                     />

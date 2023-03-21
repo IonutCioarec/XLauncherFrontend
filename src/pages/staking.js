@@ -13,6 +13,7 @@ import {contractQuery, getAccountTokens} from "utils/api";
 import stakeAbi from "abiFiles/xlauncher-staking.abi.json";
 import {Address, AddressValue} from "@multiversx/sdk-core/out";
 import {claimXLH, reinvestXLH, stakeXLH, unstakeXLH, claimUXLH} from "utils/farmsApi";
+import {getIsLoggedIn} from "@multiversx/sdk-dapp/utils";
 
 function Staking() {
     //Set the config network
@@ -20,7 +21,7 @@ function Staking() {
     const tokens = allTokens[networkId];
 
     //Get the user address
-    const {address, account} = useGetAccountInfo();
+    const {address} = useGetAccountInfo();
     const isLoggedIn = Boolean(address);
     const networkProvider = new ProxyNetworkProvider(config.provider);
     const stakeScAddress = config.stakeAddress;
@@ -59,7 +60,7 @@ function Staking() {
         let farm3Amount = 0;
         let farm3Rewards = 0;
         if (newClientReport["report_pull_items"]) {
-            newClientReport["report_pull_items"].map(item0 => {
+            newClientReport["report_pull_items"].forEach(item0 => {
                 let switcher = parseInt(item0.pool_id);
                 switch (switcher) {
                     case 1:
@@ -74,6 +75,7 @@ function Staking() {
                         farm3Amount = item0.pool_amount.toFixed() / multiplier;
                         farm3Rewards = item0.rewords_amount.toFixed() / multiplier;
                         break;
+                    default: break;
                 }
             })
         }
@@ -107,7 +109,7 @@ function Staking() {
         let pool2 = [];
         let pool3 = [];
         if(newClientState){
-            Object.values(newClientState).map(element => {
+            Object.values(newClientState).forEach(element => {
                 let elementSwitcher = parseInt(element.pool_id);
                 switch (elementSwitcher) {
                     case 1:
@@ -119,6 +121,7 @@ function Staking() {
                     case 3:
                         pool3.push(element);
                         break;
+                    default: break;
                 }
             });
             setClientStateData1(pool1);
@@ -165,7 +168,7 @@ function Staking() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             }).format(amountClient3);
-        let entryClient3 = (parseFloat(person3.pool_time_stamp_entry)  + 15552000) * 1000;
+        let entryClient3 = (parseFloat(person3.pool_time_stamp_last_collection)  ) * 1000;
         let date3 = new Date(entryClient3).toLocaleDateString("en-GB", options);
         let keyItem3 = person3.pool_id.toString() + person3.pool_amount.toString() +
             person3.pool_time_stamp_last_collection.toString() + person3.pool_amount.toString();
@@ -215,6 +218,7 @@ function Staking() {
     });
 
     //Stake Function settings
+    // eslint-disable-next-line
     const [transactionSessionId, setTransactionSessionId] = React.useState(null);
     const [open1, setOpen1] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -277,7 +281,7 @@ function Staking() {
         let unlockedUnstake = true;
         let unlockedTime = "Unstake";
         const sortedData = clientStateData.sort((a,b) => a.pool_time_stamp_entry < b.pool_time_stamp_entry? 1 : -1);
-        Object.values(sortedData).map(item => {
+        Object.values(sortedData).forEach(item => {
             const entry = (parseFloat(item.pool_time_stamp_entry) + unlockTimeInSeconds) * 1000;
             const unlockedTimeItem = (entry - timestamp) / 1000;
             if (unlockedTimeItem <= 0) {
@@ -431,11 +435,8 @@ function Staking() {
     let disabledUnstakeButton3;
     disabledUnstakeButton3 = xlhAmountU === 0 || xlhAmountU > clientReportData["farm3Amount"];
 
-    //Show claim unstake widget if unstaked amount > 0
-    let claimUnstakeWidget = "";
-
     useEffect(() => {
-        if(isLoggedIn) {
+        if(getIsLoggedIn()) {
             getClientReportData();
             getClientStateData();
             getClientUnstakeStateData();
@@ -447,6 +448,7 @@ function Staking() {
             }, 2000);
             return () => window.clearInterval(interval);
         }
+        // eslint-disable-next-line
     }, []);
 
     return (
@@ -517,7 +519,7 @@ function Staking() {
                         openL = {openL1}
                         handleOpenL = {handleOpenL1}
                         handleCloseL = {handleCloseL}
-                        isLoggedIn = {isLoggedIn}
+                        isLoggedIn = {getIsLoggedIn()}
                         showInfo = {false}
                     />
                 </Col>
@@ -585,7 +587,7 @@ function Staking() {
                         openL = {openL2}
                         handleOpenL = {handleOpenL2}
                         handleCloseL = {handleCloseL}
-                        isLoggedIn = {isLoggedIn}
+                        isLoggedIn = {getIsLoggedIn()}
                         showInfo = {true}
                     />
                 </Col>
@@ -653,7 +655,7 @@ function Staking() {
                         openL = {openL3}
                         handleOpenL = {handleOpenL3}
                         handleCloseL = {handleCloseL}
-                        isLoggedIn = {isLoggedIn}
+                        isLoggedIn = {getIsLoggedIn()}
                         showInfo = {true}
                     />
                 </Col>
