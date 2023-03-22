@@ -674,7 +674,7 @@ function Staking() {
                                 label: claimUnlockedTime,
                                 disabled: unlockedCompleteUnstakeDisabled
                             }}
-                            methodCU = {() => claimUXLH(3)}
+                            methodCU = {() => claimUXLH(stakeScAddress, setTransactionSessionId)}
                         />
                     </Col>
                 </Row>
