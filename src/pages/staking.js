@@ -143,7 +143,7 @@ function Staking() {
         let entryClient2 = (parseFloat(person.pool_time_stamp_entry)  + 5184000) * 1000;
         let date2 = new Date(entryClient2).toLocaleDateString("en-GB", options);
         let keyItem2 = person.pool_id.toString() + person.pool_amount.toString() +
-            person.pool_time_stamp_last_collection.toString() + person.pool_amount.toString();
+            person.pool_time_stamp_entry.toString() + person.pool_amount.toString();
         return (
             <Row className="d-flex" key={keyItem2}>
                 <Col xs={4}>
@@ -168,10 +168,10 @@ function Staking() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             }).format(amountClient3);
-        let entryClient3 = (parseFloat(person3.pool_time_stamp_last_collection)  + 15552000) * 1000;
+        let entryClient3 = (parseFloat(person3.pool_time_stamp_entry)  + 15552000) * 1000;
         let date3 = new Date(entryClient3).toLocaleDateString("en-GB", options);
         let keyItem3 = person3.pool_id.toString() + person3.pool_amount.toString() +
-            person3.pool_time_stamp_last_collection.toString() + person3.pool_amount.toString();
+            person3.pool_time_stamp_entry.toString() + person3.pool_amount.toString();
         return (
             <Row className="d-flex" key={keyItem3}>
                 <Col xs={4}>
