@@ -168,7 +168,7 @@ function Staking() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             }).format(amountClient3);
-        let entryClient3 = (parseFloat(person3.pool_time_stamp_last_collection)  ) * 1000;
+        let entryClient3 = (parseFloat(person3.pool_time_stamp_last_collection)  + 15552000) * 1000;
         let date3 = new Date(entryClient3).toLocaleDateString("en-GB", options);
         let keyItem3 = person3.pool_id.toString() + person3.pool_amount.toString() +
             person3.pool_time_stamp_last_collection.toString() + person3.pool_amount.toString();
