@@ -7,8 +7,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Layout(props) {
+    let bgClasses = '';
+    if(props.bgClasses) bgClasses= props.bgClasses;
     return (
-        <div className='page-container'>
+        <div className={`page-container ${bgClasses}`}>
             <Sidenav/>
             <Container className="main-container">
                     <Row>
