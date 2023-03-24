@@ -144,20 +144,22 @@ function Staking() {
         let date2 = new Date(entryClient2).toLocaleDateString("en-GB", options);
         let keyItem2 = person.pool_id.toString() + person.pool_amount.toString() +
             person.pool_time_stamp_entry.toString() + person.pool_amount.toString();
-        return (
-            <Row className="d-flex" key={keyItem2}>
-                <Col xs={4}>
+        if(amountClient2 > 0.1) {
+            return (
+                <Row className="d-flex" key={keyItem2}>
+                    <Col xs={4}>
                     <span className="text-white font-size-xs">
                         {amountClient2Formatted} &nbsp;
                     </span>
-                </Col>
-                <Col xs={8}>
+                    </Col>
+                    <Col xs={8}>
                     <span className="text-white font-size-xs">
                         &nbsp; Unlocks on {date2}
                     </span>
-                </Col>
-            </Row>
-        )
+                    </Col>
+                </Row>
+            )
+        }
     });
 
     let cs3Aux = clientStateData3.sort((a,b) => a.pool_time_stamp_entry > b.pool_time_stamp_entry? 1 : -1);
@@ -172,20 +174,22 @@ function Staking() {
         let date3 = new Date(entryClient3).toLocaleDateString("en-GB", options);
         let keyItem3 = person3.pool_id.toString() + person3.pool_amount.toString() +
             person3.pool_time_stamp_entry.toString() + person3.pool_amount.toString();
-        return (
-            <Row className="d-flex" key={keyItem3}>
-                <Col xs={4}>
+        if(amountClient3 > 0.1) {
+            return (
+                <Row className="d-flex" key={keyItem3}>
+                    <Col xs={4}>
                     <span className="text-white font-size-xs">
                         {amountClient3Formatted} &nbsp;
                     </span>
-                </Col>
-                <Col xs={8}>
+                    </Col>
+                    <Col xs={8}>
                     <span className="text-white font-size-xs">
                         &nbsp; Unlocks on {date3}
                     </span>
-                </Col>
-            </Row>
-        )
+                    </Col>
+                </Row>
+            )
+        }
     });
 
     //Get Account Tokens Balance
@@ -430,10 +434,10 @@ function Staking() {
     disabledUnstakeButton1 = xlhAmountU === 0 || xlhAmountU > clientReportData["farm1Amount"];
 
     let disabledUnstakeButton2;
-    disabledUnstakeButton2 = xlhAmountU === 0 || xlhAmountU > clientReportData["farm2Amount"];
+    disabledUnstakeButton2 = xlhAmountU === 0 || xlhAmountU > unstakedAmount2;
 
     let disabledUnstakeButton3;
-    disabledUnstakeButton3 = xlhAmountU === 0 || xlhAmountU > clientReportData["farm3Amount"];
+    disabledUnstakeButton3 = xlhAmountU === 0 || xlhAmountU > unstakedAmount3;
 
     useEffect(() => {
         if(getIsLoggedIn()) {
