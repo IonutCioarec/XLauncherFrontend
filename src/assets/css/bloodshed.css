@@ -1,0 +1,8 @@
+.bgImage{
+    background: url("assets/images/bloodshed2.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    background-clip: border-box;
+}

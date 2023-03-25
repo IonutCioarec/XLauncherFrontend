@@ -1,0 +1,516 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.70.0-nightly",
+            "commitHash": "13afbdaa0655dda23d7129e59ac48f1ec88b2084",
+            "commitDate": "2023-03-17",
+            "channel": "Nightly",
+            "short": "rustc 1.70.0-nightly (13afbdaa0 2023-03-17)"
+        },
+        "contractCrate": {
+            "name": "launchpad",
+            "version": "0.0.0",
+            "git_version": "23b80b4-modified"
+        },
+        "framework": {
+            "name": "elrond-wasm",
+            "version": "0.33.1"
+        }
+    },
+    "name": "Launchpad",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "launchpad_token_id",
+                "type": "TokenIdentifier"
+            },
+            {
+                "name": "launchpad_tokens_per_winning_ticket",
+                "type": "BigUint"
+            },
+            {
+                "name": "ticket_payment_token",
+                "type": "EgldOrEsdtTokenIdentifier"
+            },
+            {
+                "name": "ticket_price",
+                "type": "BigUint"
+            },
+            {
+                "name": "nr_winning_tickets",
+                "type": "u32"
+            },
+            {
+                "name": "ticket_purchase_start_timestamp",
+                "type": "u64"
+            },
+            {
+                "name": "winner_selection_start_timestamp",
+                "type": "u64"
+            },
+            {
+                "name": "claim_start_timestamp",
+                "type": "u64"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "addTickets",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address_number_pairs",
+                    "type": "variadic<multi<Address,u32>>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "depositLaunchpadTokens",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "claimLotteryResults",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "claimTicketPayment",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "addUsersToBlacklist",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "users_list",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getLotteryStage",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "LaunchStage"
+                }
+            ]
+        },
+        {
+            "name": "getLaunchStageFlags",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Flags"
+                }
+            ]
+        },
+        {
+            "name": "getConfiguration",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TimelineConfig"
+                }
+            ]
+        },
+        {
+            "name": "getLaunchpadTokenId",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        },
+        {
+            "name": "getLaunchpadTokensPerWinningTicket",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getTicketPrice",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenAmountPair"
+                }
+            ]
+        },
+        {
+            "name": "getNumberOfWinningTickets",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "setTicketPrice",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token_id",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setLaunchpadTokensPerWinningTicket",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setConfirmationPeriodStartBlock",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_start_block",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setWinnerSelectionStartBlock",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_start_block",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setClaimStartBlock",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_start_block",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getTicketRangeForAddress",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "optional<multi<u32,u32>>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getTotalNumberOfTicketsForAddress",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getTotalNumberOfTickets",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getNumberOfConfirmedTicketsForAddress",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "filterTickets",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "OperationCompletionStatus"
+                }
+            ]
+        },
+        {
+            "name": "selectWinners",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "OperationCompletionStatus"
+                }
+            ]
+        },
+        {
+            "name": "getNumberOfWinningTicketsForAddress",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getWinningTicketIdsForAddress",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<u32>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "setSupportAddress",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getSupportAddress",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                }
+            ]
+        },
+        {
+            "name": "removeUsersFromBlacklist",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "users_list",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "isUserBlacklisted",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "confirmTickets",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "nr_tickets_to_confirm",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "hasUserClaimedTokens",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {
+        "Flags": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "has_winner_selection_process_started",
+                    "type": "bool"
+                },
+                {
+                    "name": "were_tickets_filtered",
+                    "type": "bool"
+                },
+                {
+                    "name": "were_winners_selected",
+                    "type": "bool"
+                },
+                {
+                    "name": "was_additional_step_completed",
+                    "type": "bool"
+                }
+            ]
+        },
+        "LaunchStage": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "AddTickets",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Confirm",
+                    "discriminant": 1
+                },
+                {
+                    "name": "WinnerSelection",
+                    "discriminant": 2
+                },
+                {
+                    "name": "Claim",
+                    "discriminant": 3
+                }
+            ]
+        },
+        "TimelineConfig": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "ticket_purchase_start_timestamp",
+                    "type": "u64"
+                },
+                {
+                    "name": "winner_selection_start_timestamp",
+                    "type": "u64"
+                },
+                {
+                    "name": "claim_start_timestamp",
+                    "type": "u64"
+                }
+            ]
+        },
+        "TokenAmountPair": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "token_id",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        "OperationCompletionStatus": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Completed",
+                    "discriminant": 0
+                },
+                {
+                    "name": "InterruptedBeforeOutOfGas",
+                    "discriminant": 1
+                }
+            ]
+        }
+    }
+}

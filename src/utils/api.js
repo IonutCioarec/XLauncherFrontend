@@ -5,8 +5,12 @@ import {
     Interaction,
     ResultsParser,
     SmartContract,
-    SmartContractAbi,
+    SmartContractAbi, U32Value,
 } from "@multiversx/sdk-core/out";
+import {BigNumber} from "bignumber.js";
+import {TokenPayment} from "@multiversx/sdk-core/out/tokenPayment";
+import {sendTransactions} from "@multiversx/sdk-dapp/services/transactions/sendTransactions";
+import {Add} from "@mui/icons-material";
 
 //API to get the logged in account tokens
 export const getAccountTokens = async (tokensAPI, tokens) => {
@@ -156,6 +160,43 @@ export const contractQuery = async (networkProvider, abiFile, scAddress, scName,
         if( firstValue) return firstValue.valueOf();
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
+    }
+};
+
+export const contractQuery2 = async (networkProvider, abiFile, scAddress, scName, amount) => {
+    try {
+        let abiRegistry = AbiRegistry.create(abiFile);
+        let abi = new SmartContractAbi(abiRegistry, [scName]);
+        let contract = new SmartContract({
+            address: new Address(scAddress),
+            abi: abi
+        });
+
+        let interaction = contract.methodsExplicit.confirmTickets([
+            new U32Value(new BigNumber(amount))
+        ]).withChainID("D");
+        // let contractEndpoint = new ContractFunction("confirmTickets");
+        // let interaction = new Interaction(contract, contractEndpoint, [
+        //     new U32Value(new BigNumber(amount))
+        // ]).withChainID("D").withExplicitReceiver(new Address(scAddress));
+        interaction.withSingleESDTTransfer(TokenPayment.fungibleFromAmount("WEB-5d08be", amount, 18));
+
+        let query = interaction.check().buildTransaction();
+        console.log(query.getData());
+        console.log(Buffer.from(query.getData()).toString());
+
+        const { sessionId } = await sendTransactions({
+            transactions: [query],
+            transactionsDisplayInfo: {
+                processingMessage: 'Processing your transaction',
+                errorMessage: 'An error has occured during processing your transaction',
+                successMessage: 'Transaction processed successfully',
+                transactionDuration: 10000
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
     }
 };
