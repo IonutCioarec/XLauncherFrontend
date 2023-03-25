@@ -75,10 +75,7 @@ function Bloodshed() {
     const [transactionSessionId, setTransactionSessionId] = React.useState(null);
 
     useEffect(() => {
-        const interval = window.setInterval(() => {
             getClientReportData();
-        }, 2000);
-        return () => window.clearInterval(interval);
         // eslint-disable-next-line
     }, []);
 

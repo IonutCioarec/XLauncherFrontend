@@ -5,12 +5,13 @@ import {
     Interaction,
     ResultsParser,
     SmartContract,
-    SmartContractAbi, U32Value,
+    SmartContractAbi, U32Value, U8Value,
 } from "@multiversx/sdk-core/out";
 import {BigNumber} from "bignumber.js";
 import {TokenPayment} from "@multiversx/sdk-core/out/tokenPayment";
 import {sendTransactions} from "@multiversx/sdk-dapp/services/transactions/sendTransactions";
 import {Add} from "@mui/icons-material";
+import {refreshAccount} from "@multiversx/sdk-dapp/__commonjs/utils";
 
 //API to get the logged in account tokens
 export const getAccountTokens = async (tokensAPI, tokens) => {
@@ -173,27 +174,30 @@ export const contractQuery2 = async (networkProvider, abiFile, scAddress, scName
             abi: abi
         });
 
-        let interaction = contract.methodsExplicit.confirmTickets([
-            new U32Value(new BigNumber(amount))
-        ]).withChainID("D");
-        // let contractEndpoint = new ContractFunction("confirmTickets");
-        // let interaction = new Interaction(contract, contractEndpoint, [
-        //     new U32Value(new BigNumber(amount))
-        // ]).withChainID("D").withExplicitReceiver(new Address(scAddress));
-        interaction.withSingleESDTTransfer(TokenPayment.fungibleFromAmount("WEB-5d08be", amount, 18));
+        const transaction = contract.methodsExplicit
+            .confirmTickets([new U8Value(amount)])
+            .withChainID('D')
+            .withSingleESDTTransfer(
+                TokenPayment.fungibleFromAmount('WEB-5d08be', amount, 18)
+            )
+            .buildTransaction();
+        const pingTransaction = {
+            value: 0,
+            data: Buffer.from(transaction.getData().valueOf()),
+            receiver:
+            scAddress,
+            gasLimit: '60000000'
+        };
+        await refreshAccount();
 
-        let query = interaction.check().buildTransaction();
-        console.log(query.getData());
-        console.log(Buffer.from(query.getData()).toString());
-
-        const { sessionId } = await sendTransactions({
-            transactions: [query],
+        const { sessionId /*, error*/ } = await sendTransactions({
+            transactions: pingTransaction,
             transactionsDisplayInfo: {
-                processingMessage: 'Processing your transaction',
-                errorMessage: 'An error has occured during processing your transaction',
-                successMessage: 'Transaction processed successfully',
-                transactionDuration: 10000
-            }
+                processingMessage: 'Processing Ping transaction',
+                errorMessage: 'An error has occured during Ping',
+                successMessage: 'Ping transaction successful'
+            },
+            redirectAfterSign: false
         });
 
     } catch (error) {
