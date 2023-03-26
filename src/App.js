@@ -19,6 +19,7 @@ import Staking from "pages/staking";
 import Projects from "pages/projects";
 import Team from "pages/team";
 import Admin from "pages/admin";
+import Bloodshed_lottery from "pages/presale/bloodshed_lottery";
 import Bloodshed from "pages/presale/bloodshed";
 import Zero2Infinity from "pages/projects/Zero2Infinity";
 import EstarGames from "pages/projects/EstarGames";

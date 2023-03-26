@@ -4,7 +4,7 @@ import { Sidebar, Menu, MenuItem, menuClasses } from "react-pro-sidebar";
 import { BarChart } from 'assets/svg/BarChart';
 import { Stake } from "assets/svg/Stake";
 import { Cubes } from "assets/svg/Cubes";
-// import { ShoppingCart } from 'assets/svg/ShoppingCart';
+import { ShoppingCart } from 'assets/svg/ShoppingCart';
 import { Users } from 'assets/svg/Users';
 import { MicroBlog } from 'assets/svg/MicroBlog';
 import { FilePen } from "assets/svg/FilePen";
@@ -108,12 +108,14 @@ export function Sidenav() {
                         >
                             Stake NFTS
                         </MenuItem>
-                        {/*<MenuItem*/}
-                        {/*    label="Presale"*/}
-                        {/*    icon={<ShoppingCart />}*/}
-                        {/*>*/}
-                        {/*    Presale*/}
-                        {/*</MenuItem>*/}
+                        <MenuItem
+                            label="Lottery"
+                            icon={<ShoppingCart />}
+                            component={<Link to="/presale/bloodshed"/>}
+                            active={window.location.pathname === "/presale/bloodshed"}
+                        >
+                            Lottery
+                        </MenuItem>
                     </Menu>
 
                     <div className='sidebar-label-divider'>

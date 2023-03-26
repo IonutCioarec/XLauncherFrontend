@@ -6,3 +6,8 @@
     background-attachment: fixed;
     background-clip: border-box;
 }
+
+.Mui-disabled{
+    -webkit-text-fill-color: white !important;
+    opacity: 0.8 !important;
+}

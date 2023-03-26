@@ -1,0 +1,55 @@
+/* Countdown timer */
+.show-counter {
+    padding: 0.5rem;
+}
+
+.show-counter .countdown-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.75rem;
+    padding: 1rem 1rem 2rem 1rem;
+    /* border: 2px solid #ebebeb; */
+    border-radius: 0.45rem;
+    text-decoration: none;
+    color: white;
+}
+
+.show-counter .countdown {
+    line-height: 1.25rem;
+    padding: 1rem 1.75rem 0 1.75rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.show-counter .countdown > p {
+    margin: 0;
+}
+
+.show-counter .countdown > span {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.center-countdown{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.odometer-block{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+.custom-ctt-numbers{
+    font-size: 30px;
+}
+.custom-ctt-numbers2{
+    color: lightskyblue;
+}
