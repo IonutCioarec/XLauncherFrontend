@@ -17,7 +17,7 @@ import { useGetIsLoggedIn } from "@multiversx/sdk-dapp/hooks";
 export default function BloodshedTicketsSaleCard({
   buyTickets,
   disabledVar,
-  vegldBalance,
+  vegldBalance
 }) {
   const [ticketsNumber, setTicketsNumber] = React.useState(1);
   const isLoggedIn = useGetIsLoggedIn();
@@ -187,8 +187,19 @@ export default function BloodshedTicketsSaleCard({
             </div>
           </Box>
         </Col>
+        <Col xs={12}>
+          <p className="font-bold text-white text-uppercase">You can buy one time only</p>
+        </Col>
         {!disabledVar && <Col xs={12}>{getBuyButton()}</Col>}
-        {!isLoggedIn && <Col xs={12} className='text-white'>Aici ar trebui un buton de connect wallet</Col>}
+        {!isLoggedIn && <Col xs={12}>
+          <Button
+              className="btn btn-block btn-sm btn-info mt-3"
+              style={{ minWidth: "90px" }}
+              disabled={true}
+          >
+            You are not logged in
+          </Button>
+        </Col>}
       </Row>
     </div>
   );

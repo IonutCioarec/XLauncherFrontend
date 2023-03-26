@@ -1,4 +1,4 @@
-export const networkId = "devnet";
+export const networkId = "mainnet";
 
 export const customConfig = {
     mainnet: {

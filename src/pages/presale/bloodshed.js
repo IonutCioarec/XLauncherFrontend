@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "layout/layout";
 import "assets/css/globals.css";
 import "assets/css/bloodshed.css";
+import "assets/css/dateCountdown.css";
 import Image from "react-bootstrap/Image";
 import char1 from "assets/images/char1.png";
 import char2 from "assets/images/char2.png";
@@ -50,6 +51,7 @@ function Bloodshed() {
   const [totalNumberOfTicketsForAddress, setTotalNumberOfTicketsForAddress] =
     useState(0);
   const [disabledVar, setDisabledVar] = useState(false);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
   const [currentTimestamp, _] = useState(
     new Date(Math.floor(new Date().getTime() / 1000))
   );
@@ -80,9 +82,17 @@ function Bloodshed() {
 
       const seconds = Math.floor(timeDiff / one_second);
       timeDiff -= seconds * one_second;
-      return `${days}:${hours}:${minutes}:${seconds}`;
+      return (
+          <span className="custom-ctt-numbers2">
+            {days > 0 && <span>{days} <span className="text-white">d</span> </span>}
+            {hours > 0 && <span>{hours} <span className="text-white">h</span> </span>}
+            {minutes > 0 && <span>{minutes} <span className="text-white">min</span> </span>}
+            {seconds > 0 && <span>{seconds} <span className="text-white">s</span> </span>}
+          </span>
+      );
     }
   };
+
 
   const getLotteryPhase = (newConfiguration) => {
     if (newConfiguration === undefined || newConfiguration === null) {
@@ -132,7 +142,7 @@ function Bloodshed() {
           break;
       }
     }
-    if (totalNumberOfTicketsForAddress > 0 || !isLoggedIn) {
+    if (totalNumberOfTicketsForAddress > 0 || !isLoggedIn || !isWhitelisted) {
       isDisabled = true;
     }
     setCurrentPhase(phase);
@@ -179,6 +189,16 @@ function Bloodshed() {
         [new AddressValue(new Address(address))]
       );
       setTotalNumberOfTicketsForAddress(newTotalNumberOfTicketsForAddress);
+
+      const newIsWhitelisted = await contractQuery(
+          networkProvider,
+          lotteryAbi,
+          scAddress,
+          scName,
+          "isWhitelisted",
+          [new AddressValue(new Address(address))]
+      );
+      setIsWhitelisted(newIsWhitelisted);
     }
   };
 
@@ -257,7 +277,6 @@ function Bloodshed() {
         timestampToUse = configurationToUse.claim_start_timestamp.toNumber();
         break;
     }
-    console.log("data to be refreshed", timestampToUse);
     setTimeLeftCountdown(countdownToTimestamp(timestampToUse * 1000));
   };
 
@@ -298,8 +317,8 @@ function Bloodshed() {
             className="text-center"
           >
             {totalNumberOfSoldTickets ? (
-              <p className="h4 text-white">
-                Owned Tickets: {totalNumberOfTicketsForAddress.toString()})
+              <p className="h5 text-white mt-4">
+                Owned Tickets: {totalNumberOfTicketsForAddress.toString()}, KYC - {isWhitelisted ? 'Approved' : 'None'}
               </p>
             ) : (
               ""

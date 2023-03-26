@@ -10,7 +10,7 @@
         "contractCrate": {
             "name": "launchpad",
             "version": "0.0.0",
-            "git_version": "23b80b4-modified"
+            "git_version": "91f96ca-modified"
         },
         "framework": {
             "name": "elrond-wasm",
@@ -56,6 +56,18 @@
         "outputs": []
     },
     "endpoints": [
+        {
+            "name": "withdrawTicketRewards",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
         {
             "name": "addTickets",
             "onlyOwner": true,
@@ -393,6 +405,47 @@
                     "type": "bool"
                 }
             ]
+        },
+        {
+            "name": "isWhitelisted",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "registerKYC",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "addresses",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "unregisterKYC",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "addresses",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
         },
         {
             "name": "confirmTickets",
