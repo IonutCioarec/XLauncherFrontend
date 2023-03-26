@@ -61,7 +61,7 @@ export default function BloodshedTicketsSaleCard({
         <Button
           className="btn btn-block btn-sm btn-info mt-3"
           style={{ minWidth: "90px" }}
-          onClick={buyTickets}
+          onClick={() => buyTickets(ticketsNumber)}
         >
           Buy Tickets
         </Button>

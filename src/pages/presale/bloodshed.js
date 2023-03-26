@@ -80,7 +80,6 @@ function Bloodshed() {
 
       const seconds = Math.floor(timeDiff / one_second);
       timeDiff -= seconds * one_second;
-
       return `${days}:${hours}:${minutes}:${seconds}`;
     }
   };
@@ -119,6 +118,9 @@ function Bloodshed() {
           );
           break;
         case "tickets_purchase":
+          newTimestamp = parseInt(
+            newConfiguration.winner_selection_start_timestamp
+          );
           isDisabled = false;
           break;
         case "winner_selection":
@@ -212,7 +214,7 @@ function Bloodshed() {
 
   useEffect(() => {
     if (configuration === undefined || configuration === null) {
-        return;
+      return;
     }
     const interval = window.setInterval(() => {
       dataToBeRefreshed().then(() => {
@@ -236,22 +238,26 @@ function Bloodshed() {
   const dataToBeRefreshed = async () => {
     let configurationToUse = configuration;
     if (configurationToUse === undefined || configurationToUse === null) {
-        return;
+      return;
     }
     const lotteryPhase = getLotteryPhase(configurationToUse);
+    setCurrentPhase(lotteryPhase);
     setContainerStatus(lotteryPhase, configurationToUse);
     let timestampToUse = 0;
     switch (lotteryPhase) {
       case "not_started":
-        timestampToUse = configurationToUse.ticket_purchase_start_timestamp;
+        timestampToUse =
+          configurationToUse.ticket_purchase_start_timestamp.toNumber();
         break;
       case "tickets_purchase":
-        timestampToUse = configurationToUse.winner_selection_start_timestamp;
+        timestampToUse =
+          configurationToUse.winner_selection_start_timestamp.toNumber();
         break;
       case "winner_selection":
-        timestampToUse = configurationToUse.claim_start_timestamp;
+        timestampToUse = configurationToUse.claim_start_timestamp.toNumber();
         break;
     }
+    console.log("data to be refreshed", timestampToUse);
     setTimeLeftCountdown(countdownToTimestamp(timestampToUse * 1000));
   };
 
@@ -265,7 +271,7 @@ function Bloodshed() {
               {currentPhase === "not_started" && (
                 <p className="h1 text-white"> {PHASE_MESSAGE_NOT_STARTED} </p>
               )}
-              {currentPhase === "ticket_purchase" && (
+              {currentPhase === "tickets_purchase" && (
                 <p className="h1 text-white"> {PHASE_MESSAGE_STARTED} </p>
               )}
               {currentPhase === "winner_selection" && (
@@ -277,7 +283,7 @@ function Bloodshed() {
               {currentPhase === "claim_results" && (
                 <p className="h1 text-white"> {PHASE_MESSAGE_CLAIM_REWARDS} </p>
               )}
-              {["not_started", "ticket_purchase", "winner_selection"].includes(
+              {["not_started", "tickets_purchase", "winner_selection"].includes(
                 currentPhase
               ) && <a className="countdown-link">{timeLeftCountdown}</a>}
             </div>
@@ -299,15 +305,15 @@ function Bloodshed() {
               ""
             )}
             <BloodshedTicketsSaleCard
-              buyTickets={() =>
+              buyTickets={(amount) =>
                 buyTickets(
                   networkProvider,
                   lotteryAbi,
                   scAddress,
                   scName,
-                  scToken,
                   chainID,
-                  5
+                  scToken,
+                  amount
                 )
               }
               disabledVar={disabledVar}
