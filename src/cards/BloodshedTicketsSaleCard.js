@@ -132,7 +132,7 @@ export default function BloodshedTicketsSaleCard({
             onChange={handleSliderChangeS}
             step={1}
             min={1}
-            max={100}
+            max={500}
             disabled={disabledVar}
           />
         </Col>
