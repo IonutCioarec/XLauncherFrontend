@@ -64,7 +64,7 @@ function App() {
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/team" element={<Team />} />
                   <Route path="/admin" element={<Admin />} />
-                  <Route path="/presale/bloodshed" element={<Bloodshed />} />
+                  <Route path="/lottery/bloodshed" element={<Bloodshed />} />
                   <Route path="/projects/zero-2-infinity" element={<Zero2Infinity />} />
                   <Route path="/projects/estar-games" element={<EstarGames />} />
                   <Route path="/projects/vestax-finance" element={<VestaXFinance />} />

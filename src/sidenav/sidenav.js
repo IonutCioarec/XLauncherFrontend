@@ -111,7 +111,7 @@ export function Sidenav() {
                         <MenuItem
                             label="Lottery"
                             icon={<ShoppingCart />}
-                            component={<Link to="/presale/bloodshed"/>}
+                            component={<Link to="/lottery/bloodshed"/>}
                             active={window.location.pathname === "/presale/bloodshed"}
                         >
                             Lottery
