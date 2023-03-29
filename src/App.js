@@ -51,6 +51,7 @@ function App() {
         <DappProvider
           environment={customNetConfig.id}
           customNetworkConfig={customNetConfig}
+          dappConfig={{shouldUseWebViewProvider: true}}
           completedTransactionsDelay={200}
         >
           <TransactionsToastList />
