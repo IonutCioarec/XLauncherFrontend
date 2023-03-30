@@ -5,19 +5,22 @@ import Input from "@mui/material/Input";
 import Slider from "@mui/material/Slider";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faMinus, faShop, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Card } from "react-bootstrap";
-import image from "assets/images/bloodshed1.png";
+import image from "assets/images/bloodshed3.jpg";
 import imageTitle from "assets/images/bloodshed_title.png";
 import logoTitle from "assets/images/zalmoxis_logo.png";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { useGetIsLoggedIn } from "@multiversx/sdk-dapp/hooks";
+import {openInNewTab} from "utils/utilities";
 
 export default function BloodshedTicketsSaleCard({
   buyTickets,
   disabledVar,
-  vegldBalance
+  vegldBalance,
+  totalNumberOfTicketsForAddress,
+  isWhitelisted
 }) {
   const [ticketsNumber, setTicketsNumber] = React.useState(1);
   const isLoggedIn = useGetIsLoggedIn();
@@ -76,7 +79,7 @@ export default function BloodshedTicketsSaleCard({
           <Card.Img variant="top" src={imageTitle} />
           <Card.Img
             variant="top"
-            src={image}
+            src={"https://bloodshed.gg/sold.jpg"}
             style={{ borderRadius: "15px", height: "250px" }}
           />
           <Card.Img
@@ -123,7 +126,7 @@ export default function BloodshedTicketsSaleCard({
               }
             }}
             disableUnderline
-            disabled={disabledVar}
+            // disabled={disabledVar}
             className="text-white ps-3 pe-5 pt-1 b-r-md"
             style={{ border: "0.5px solid rgb(74, 85, 104)", width: "100%" }}
           />
@@ -133,7 +136,7 @@ export default function BloodshedTicketsSaleCard({
             step={1}
             min={1}
             max={500}
-            disabled={disabledVar}
+            // disabled={disabledVar}
           />
         </Col>
         <Col xs={1}> </Col>
@@ -151,7 +154,7 @@ export default function BloodshedTicketsSaleCard({
             <Button
               variant="success"
               className="btn btn-sm btn-block"
-              disabled={disabledVar}
+              // disabled={disabledVar}
               onClick={() => increaseAmount(1)}
             >
               <FontAwesomeIcon fontSize={"medium"} icon={faAdd} color="white" />
@@ -162,7 +165,7 @@ export default function BloodshedTicketsSaleCard({
             <Button
               variant="danger"
               className="btn btn-sm btn-block mt-1"
-              disabled={disabledVar}
+              // disabled={disabledVar}
               onClick={() => decreaseAmount(1)}
             >
               <FontAwesomeIcon
@@ -172,6 +175,17 @@ export default function BloodshedTicketsSaleCard({
                 style={{ marginLeft: "-9px" }}
               />
               <span className="ms-2">Buy less</span>
+            </Button>
+          </Col>
+          <Col xs={12}>
+            <Button
+                variant="info"
+                className="btn btn-sm btn-block mt-1"
+                // disabled={disabledVar}
+                onClick={() => openInNewTab("https://vegld.vestax.finance/")}
+            >
+              <FontAwesomeIcon fontSize={"medium"} icon={faShoppingCart} color="white" />
+              <span className="ms-2">Get vEGLD</span>
             </Button>
           </Col>
         </Col>
@@ -190,7 +204,7 @@ export default function BloodshedTicketsSaleCard({
         <Col xs={12}>
           <p className="font-bold text-white text-uppercase">You can buy one time only</p>
         </Col>
-        {!disabledVar && <Col xs={12}>{getBuyButton()}</Col>}
+        {(totalNumberOfTicketsForAddress <= 0 && isWhitelisted) && <Col xs={12}>{getBuyButton()}</Col>}
         {!isLoggedIn && <Col xs={12}>
           <Button
               className="btn btn-block btn-sm btn-info mt-3"

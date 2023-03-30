@@ -337,6 +337,8 @@ function Bloodshed() {
               }
               disabledVar={disabledVar}
               vegld={vegldBalance}
+              totalNumberOfTicketsForAddress={totalNumberOfTicketsForAddress}
+              isWhitelisted={isWhitelisted}
             />
           </Col>
         </Row>
